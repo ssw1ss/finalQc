@@ -5,7 +5,7 @@ import fetch from "isomorphic-fetch"
 
 export const client = new ApolloClient({
   link: createHttpLink({
-    uri: "http://localhost:8000/___graphql",
+    uri: "https://modest-jennings-289e13.netlify.com/___graphql",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
