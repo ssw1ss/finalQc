@@ -1,29 +1,45 @@
 import React from "react"
-// import { ApolloClient } from "apollo-client"
-// import { createHttpLink } from "apollo-link-http"
-// import { InMemoryCache } from "apollo-cache-inmemory"
-// import { ApolloProvider } from "react-apollo"
 import { graphql } from "gatsby"
 import Link from "gatsby-link"
 import Img from "gatsby-image"
+import { Query } from "react-apollo"
+import gql from "graphql-tag"
 
-// import Client from "./Client"
-
-// const client = new ApolloClient({
-//   link: createHttpLink({
-//     uri: "http://localhost:8000/___graphql",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json"
-//     }
-//   }),
-//   cache: new InMemoryCache()
-// })
+const testQuery = gql`
+  {
+    allMdx(
+      filter: { frontmatter: { type: { eq: "product" } } }
+      limit: 2
+      skip: 1
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  }
+`
 
 const ProductsPage = ({ data }) => {
   return (
     <div>
-      <div style={{ background: "#ddd" }}>
+      <Query query={testQuery}>
+        {({ data, loading, error }) => {
+          if (loading) return <span>Loading...</span>
+          if (error) return <p>{error.message}</p>
+          return (
+            <div>
+              {data.allMdx.edges.map(({ node }) => (
+                <h3>{node.frontmatter.title}</h3>
+              ))}
+            </div>
+          )
+        }}
+      </Query>
+      <div style={{ background: "#ddd", padding: "50px 0" }}>
         {data.allMdx.edges.map(({ node }) => {
           const { frontmatter, fields, excerpt } = node
           return (

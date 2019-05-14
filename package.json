@@ -24,6 +24,7 @@
     "gatsby-transformer-sharp": "^2.1.19",
     "graphql-tag": "^2.10.1",
     "http-proxy-middleware": "^0.19.1",
+    "isomorphic-fetch": "^2.2.1",
     "netlify-lambda": "^1.4.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
