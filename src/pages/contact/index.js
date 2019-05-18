@@ -7,6 +7,7 @@ const ContactPage = ({ data }) => (
   <Layout>
     <Section>
       <form name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="contact" value="contact" />
         <div>
           <label>
             Your Name: <input type="text" name="name" />
