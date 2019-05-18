@@ -1,17 +1,24 @@
 import React from "react"
 import { graphql } from "gatsby"
-import MDXRenderer from "gatsby-mdx/mdx-renderer"
-import Img from "gatsby-image"
+
+import { Layout } from "ui/layouts"
+import { Section } from "ui/base"
+import { Article } from "components"
 
 const SinglePost = ({ data: { mdx } }) => {
   const { frontmatter } = mdx
+  const { date, image, title } = frontmatter
   return (
-    <div>
-      <Img fixed={frontmatter.image.childImageSharp.fixed} />
-      <h3>{frontmatter.title}</h3>
-      <h5>{frontmatter.date}</h5>
-      <MDXRenderer>{mdx.code.body}</MDXRenderer>
-    </div>
+    <Layout>
+      <Section>
+        <Article
+          date={date}
+          image={image}
+          title={title}
+          content={mdx.code.body}
+        />
+      </Section>
+    </Layout>
   )
 }
 

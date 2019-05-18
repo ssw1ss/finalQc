@@ -43,14 +43,12 @@ export const postFullFragment = graphql`
 export const productPreviewFragment = graphql`
   fragment ProductPreview on Mdx {
     id
-    excerpt(pruneLength: 10)
     fields {
       url
     }
     frontmatter {
       title
       milk_type
-      milk_treatment
       image {
         childImageSharp {
           fixed(width: 200, height: 200) {

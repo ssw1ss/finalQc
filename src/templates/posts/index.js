@@ -1,25 +1,32 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Link from "gatsby-link"
-import Img from "gatsby-image"
+import { Box } from "@rebass/emotion"
+import { ArticlePreview } from "components"
+import { Layout } from "ui/layouts"
+import { Section } from "ui/base"
 
 const IndexPage = ({ data }) => {
   return (
-    <div>
-      {data.allMdx.edges.map(({ node }) => {
-        const { frontmatter, fields, excerpt } = node
-        return (
-          <div key={node.id}>
-            <Img fixed={frontmatter.image.childImageSharp.fixed} />
-            <h3>
-              <Link to={fields.url}>{frontmatter.title}</Link>
-            </h3>
-            <h5>{frontmatter.date}</h5>
-            <p>{excerpt}</p>
-          </div>
-        )
-      })}
-    </div>
+    <Layout>
+      <Section mb={10}>
+        <Box>
+          {data.allMdx.edges.map(({ node }) => {
+            const { id, frontmatter, fields, excerpt } = node
+            const { date, title, image } = frontmatter
+            return (
+              <ArticlePreview
+                key={id}
+                date={date}
+                image={image}
+                title={title}
+                excerpt={excerpt}
+                slug={fields.url}
+              />
+            )
+          })}
+        </Box>
+      </Section>
+    </Layout>
   )
 }
 
