@@ -65,16 +65,17 @@ exports.createPages = ({ graphql, actions }) => {
         // Create paginated blog (blog/2, blog/3 etc)
         const numPages = Math.ceil(result.data.allMdx.totalCount / ipp)
         Array.from({ length: numPages }).forEach((_, i) => {
-          const pageNum = i + 1
+          const currentPage = i + 1
           createPage({
             path:
               i === 0
                 ? `${BLOG_PATH_PREFIX}`
-                : `${BLOG_PATH_PREFIX}/page/${pageNum}`,
+                : `${BLOG_PATH_PREFIX}/page/${currentPage}`,
             component: path.resolve(`./src/templates/posts/index.js`),
             context: {
               limit: ipp,
-              skip: i * ipp
+              skip: i * ipp,
+              numPages
             }
           })
         })
@@ -113,16 +114,17 @@ exports.createPages = ({ graphql, actions }) => {
       .then(result => {
         const numPages = Math.ceil(result.data.allMdx.totalCount / ipp)
         Array.from({ length: numPages }).forEach((_, i) => {
-          const pageNum = i + 1
+          const currentPage = i + 1
           createPage({
             path:
               i === 0
                 ? `${PRODUCTS_PATH_PREFIX}`
-                : `${PRODUCTS_PATH_PREFIX}/page/${pageNum}`,
+                : `${PRODUCTS_PATH_PREFIX}/page/${currentPage}`,
             component: path.resolve(`./src/templates/products/index.js`),
             context: {
               limit: ipp,
-              skip: i * ipp
+              skip: i * ipp,
+              numPages
             }
           })
         })

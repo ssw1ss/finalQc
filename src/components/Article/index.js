@@ -44,9 +44,8 @@ export const Article = props => {
       <DateHeading>{date}</DateHeading>
       <H3 mb={3}>{title}</H3>
 
-      <Box mb={2} style={{ borderRadius: "5px", overflow: "hidden" }}>
-        <Img fixed={img} />
-      </Box>
+      {/* <Box mb={2} style={{ borderRadius: "5px", overflow: "hidden" }}> */}
+      <Img fixed={img} />
 
       <Text mb={2}>
         <MDXRenderer>{content}</MDXRenderer>

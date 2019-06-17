@@ -3,7 +3,7 @@ import React from "react"
 import { Layout } from "ui/layouts"
 import { Section } from "ui/base"
 
-const ContactPage = ({ data }) => (
+const ContactPage = () => (
   <Layout>
     <Section>
       <form name="contact" method="POST" data-netlify="true">

@@ -1,11 +1,33 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Box } from "@rebass/emotion"
 
 import { Layout } from "ui/layouts"
-import { Flex, Section } from "ui/base"
+import { Flex, Link, Section } from "ui/base"
 import { ProductCard } from "components"
 
-const ProductsPage = ({ data }) => {
+const ProductsPage = ({ data, pageContext: { skip, limit, numPages } }) => {
+  const currentPage = skip / limit + 1
+  const links = {
+    prevLink: <div />,
+    nextLink: <div />
+  }
+  if (currentPage === 1) {
+    links.nextLink = (
+      <Link to={`/products/page/${currentPage + 1}`}>Next Page</Link>
+    )
+  } else if (currentPage === 2) {
+    links.prevLink = <Link to={`/products`}>Previous Page</Link>
+    if (numPages !== 2) {
+      links.nextLink = (
+        <Link to={`/products/page/${currentPage + 1}`}>Next Page</Link>
+      )
+    }
+  } else if (currentPage === numPages) {
+    links.prevLink = (
+      <Link to={`/products/page/${currentPage - 1}`}>Previous Page</Link>
+    )
+  }
   return (
     <Layout>
       <Section mb={10}>
@@ -22,6 +44,10 @@ const ProductsPage = ({ data }) => {
             )
           })}
         </Flex>
+        <Flex justifyContent="space-between">
+          <Box>{links.prevLink}</Box>
+          <Box>{links.nextLink}</Box>
+        </Flex>
       </Section>
     </Layout>
   )
@@ -36,7 +62,6 @@ export const productsQuery = graphql`
       skip: $skip
       limit: $limit
     ) {
-      totalCount
       edges {
         node {
           ...ProductPreview

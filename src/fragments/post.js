@@ -66,6 +66,7 @@ export const productFullFragment = graphql`
       body
     }
     frontmatter {
+      type
       title
       milk_type
       milk_treatment
@@ -76,6 +77,8 @@ export const productFullFragment = graphql`
           }
         }
       }
+      another
+      test
     }
   }
 `
