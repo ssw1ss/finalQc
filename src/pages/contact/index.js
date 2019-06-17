@@ -24,7 +24,7 @@ const ContactPage = () => (
           </label>
         </div>
         <div>
-          <input type="submit">Submit</input>
+          <input type="submit" value="submit" />
         </div>
       </form>
     </Section>
