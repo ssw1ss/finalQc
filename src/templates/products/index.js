@@ -6,28 +6,34 @@ import { Layout } from "ui/layouts"
 import { Flex, Link, Section } from "ui/base"
 import { ProductCard } from "components"
 
-const ProductsPage = ({ data, pageContext: { skip, limit, numPages } }) => {
+const ProductsPage = ({
+  data,
+  pageContext: { skip, limit, numPages, totalCount }
+}) => {
   const currentPage = skip / limit + 1
   const links = {
-    prevLink: <div />,
-    nextLink: <div />
-  }
-  if (currentPage === 1) {
-    links.nextLink = (
-      <Link to={`/products/page/${currentPage + 1}`}>Next Page</Link>
-    )
-  } else if (currentPage === 2) {
-    links.prevLink = <Link to={`/products`}>Previous Page</Link>
-    if (numPages !== 2) {
-      links.nextLink = (
-        <Link to={`/products/page/${currentPage + 1}`}>Next Page</Link>
-      )
-    }
-  } else if (currentPage === numPages) {
-    links.prevLink = (
+    prevLink: (
       <Link to={`/products/page/${currentPage - 1}`}>Previous Page</Link>
-    )
+    ),
+    nextLink: <Link to={`/products/page/${currentPage + 1}`}>Next Page</Link>
   }
+  if (currentPage == 1) {
+    links.prevLink = <div />
+  }
+  if (currentPage == 2) {
+    links.prevLink = <Link to={`/products`}>Previous Page</Link>
+  }
+  if (currentPage >= numPages) {
+    links.nextLink = <div />
+  }
+  const remainder = 3 - ((totalCount % 9) % 3)
+  console.log(remainder)
+  const remainderDivs =
+    remainder === 0
+      ? null
+      : Array(remainder)
+          .fill()
+          .map(i => <Flex flexBasis={["100%", "47.5%", "30%"]} />)
   return (
     <Layout>
       <Section mb={10}>
@@ -43,6 +49,7 @@ const ProductsPage = ({ data, pageContext: { skip, limit, numPages } }) => {
               />
             )
           })}
+          {remainderDivs}
         </Flex>
         <Flex justifyContent="space-between">
           <Box>{links.prevLink}</Box>

@@ -29,7 +29,7 @@ const IndexPage = ({ data, pageContext: { skip, limit, numPages } }) => {
   return (
     <Layout>
       <Section mb={10}>
-        <Flex flexWrap="wrap" justifyContent="space-between">
+        <Box width={["100%", "90%", "75%"]} mx="auto">
           {data.allMdx.edges.map(({ node }) => {
             const { id, frontmatter, fields, excerpt } = node
             const { date, title, image } = frontmatter
@@ -44,7 +44,7 @@ const IndexPage = ({ data, pageContext: { skip, limit, numPages } }) => {
               />
             )
           })}
-        </Flex>
+        </Box>
         <Flex justifyContent="space-between">
           <Box>{links.prevLink}</Box>
           <Box>{links.nextLink}</Box>

@@ -43,7 +43,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const ipp = 2 /* items per page */
+  const ipp = 9 /* items per page */
 
   const posts = new Promise((resolve, reject) => {
     graphql(`
@@ -63,7 +63,8 @@ exports.createPages = ({ graphql, actions }) => {
     `)
       .then(result => {
         // Create paginated blog (blog/2, blog/3 etc)
-        const numPages = Math.ceil(result.data.allMdx.totalCount / ipp)
+        const totalCount = result.data.allMdx.totalCount
+        const numPages = Math.ceil(totalCount / ipp)
         Array.from({ length: numPages }).forEach((_, i) => {
           const currentPage = i + 1
           createPage({
@@ -75,7 +76,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               limit: ipp,
               skip: i * ipp,
-              numPages
+              numPages,
+              totalCount
             }
           })
         })
@@ -112,7 +114,8 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `)
       .then(result => {
-        const numPages = Math.ceil(result.data.allMdx.totalCount / ipp)
+        const totalCount = result.data.allMdx.totalCount
+        const numPages = Math.ceil(totalCount / ipp)
         Array.from({ length: numPages }).forEach((_, i) => {
           const currentPage = i + 1
           createPage({
@@ -124,7 +127,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               limit: ipp,
               skip: i * ipp,
-              numPages
+              numPages,
+              totalCount
             }
           })
         })

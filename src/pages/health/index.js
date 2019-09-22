@@ -124,10 +124,10 @@ const HealthPage = ({ data }) => (
     </Section>
 
     <Section mb={10}>
-      <H1 mb={6} textAlign="center">
-        Related Articles
+      <H1 mb={7} textAlign="center">
+        Related Reading
       </H1>
-      <Box>
+      <Box width={["100%", "90%", "75%"]} mx="auto">
         {data.allMdx.edges.map(({ node }, i) => {
           let { id, excerpt, frontmatter, fields } = node
           let { title, image, date } = frontmatter

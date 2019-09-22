@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { Box, Flex, Text, Image } from "@rebass/emotion"
+import { Box, Flex as FlexBase, Text, Image } from "@rebass/emotion"
 import {
   CarouselProvider,
   Slider,
@@ -9,12 +9,17 @@ import {
   ButtonNext
 } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
+import { display } from "styled-system"
 
 import { Tabs } from "components"
 import { Layout } from "ui/layouts"
 import { H1, H5, Section, Paragraph } from "ui/base"
 import imgDaniel from "res/images/daniel.png"
 import imgCaroline from "res/images/caroline.png"
+
+const Flex = styled(FlexBase)`
+  ${display};
+`
 
 const Button = styled("button")`
   background: none;
@@ -36,7 +41,7 @@ const historyTabs = [
   {
     label: "2011",
     content:
-      "1 Longer content goes here<br />Longer content goes here<br />Longer content goes here<br />"
+      "asdfksd afkj alksjd fkjs dlfkj sdklfj lskdj fklsj dfkljs dfklj sdkflj sdklfj klsdj flksj dfklj sdklfj slkdjf klsdjf lksj dfklj "
   },
   {
     label: "2012",
@@ -106,18 +111,18 @@ const AboutPage = () => (
         />
       </Flex>
       <Text textAlign="center">
-        <H1 fontSize={0} mt={3}>
+        <H1 fontSize={0} mt={4}>
           Hello / Hällo
         </H1>
-        <H5 mt={1}>
+        <H5 mt={3} style={{ maxWidth: "400px" }} mx="auto">
           We are Daniel and Caroline Hostettler, the owners of Quality Cheese
           Inc
         </H5>
       </Text>
     </Section>
 
-    <Section as={Flex} mt={6}>
-      <Box>
+    <Section as={Flex} mt={7}>
+      <Box width={["100%", "100%", "75%"]} mx="auto">
         <Paragraph dropcap>
           Quality Cheese is now in its 20th year of bringing the best Swiss
           cheeses to the U.S. When it comes to quality nothing and nobody
@@ -137,62 +142,71 @@ const AboutPage = () => (
       </Box>
     </Section>
 
-    <Section
-      as={Flex}
-      alignItems="center"
-      flexDirection="column"
-      mt={7}
-      py={7}
-      bg="lightBlue"
-    >
-      <H1>Our History</H1>
-      <Tabs data={historyTabs}>
-        {({ active, changeActive, tabs }) => {
-          let tabContent
-          let slides = tabs.map((tab, i) => {
-            let activeClass = {}
-            if (i === active) {
-              activeClass = { borderColor: "#27F", color: "#222" }
-              tabContent = tab.content
-            }
+    <Section mt={[7, 7, 8]} py={[7, 7, 8]} bg="lightBlue">
+      <Flex
+        width={["100%", "100%", "75%"]}
+        mx="auto"
+        display={["none", "none", "block"]}
+      >
+        <H1 textAlign="center">Our History</H1>
+        <Tabs data={historyTabs}>
+          {({ active, changeActive, tabs }) => {
+            let tabContent
+            let slides = tabs.map((tab, i) => {
+              let activeClass = {}
+              if (i === active) {
+                activeClass = { borderColor: "#27F", color: "#222" }
+                tabContent = tab.content
+              }
+              return (
+                <Slide
+                  key={i}
+                  index={i}
+                  onClick={() => changeActive(i)}
+                  style={{ height: "30px" }}
+                >
+                  <Text textAlign="center">
+                    <Label style={activeClass}>{tab.label}</Label>
+                  </Text>
+                </Slide>
+              )
+            })
             return (
-              <Slide key={i} index={i} onClick={() => changeActive(i)}>
-                <Text textAlign="center">
-                  <Label style={activeClass}>{tab.label}</Label>
-                </Text>
-              </Slide>
-            )
-          })
-          return (
-            <Flex
-              as={CarouselProvider}
-              alignItems="center"
-              flexDirection="column"
-              naturalSlideWidth={100}
-              naturalSlideHeight={50}
-              totalSlides={tabs.length}
-              visibleSlides={5}
-              style={{ width: "100%" }}
-            >
-              <Flex mt={2} alignItems="center" width="100%">
-                <Button as={ButtonBack}>&lt;</Button>
-                <Box width="100%">
-                  <Slider>{slides}</Slider>
-                </Box>
-                <Button as={ButtonNext}>&gt;</Button>
+              <Flex
+                as={CarouselProvider}
+                alignItems="center"
+                flexDirection="column"
+                naturalSlideWidth={100}
+                naturalSlideHeight={50}
+                totalSlides={tabs.length}
+                visibleSlides={5}
+                mx="auto"
+              >
+                <Flex
+                  mt={4}
+                  alignItems="center"
+                  width="100%"
+                  style={{ maxWidth: "500px" }}
+                >
+                  <Button as={ButtonBack}>&lt;</Button>
+                  <Box width="100%">
+                    <Slider>{slides}</Slider>
+                  </Box>
+                  <Button as={ButtonNext}>&gt;</Button>
+                </Flex>
+                <Box mt={5} dangerouslySetInnerHTML={{ __html: tabContent }} />
               </Flex>
-              <Box mt={5} dangerouslySetInnerHTML={{ __html: tabContent }} />
-            </Flex>
-          )
-        }}
-      </Tabs>
+            )
+          }}
+        </Tabs>
+      </Flex>
     </Section>
 
     <Section
       as={Flex}
       alignItems="center"
       flexDirection="column"
-      py={7}
+      py={[7, 7, 8]}
       bg="lightYellow"
     >
       <H1>Friends &amp; Partners</H1>
@@ -218,8 +232,8 @@ const AboutPage = () => (
           })
           return (
             <>
-              <Box mt={2}>{tabLabels}</Box>
-              <Box mt={5} dangerouslySetInnerHTML={{ __html: tabContent }} />
+              <Box mt={4}>{tabLabels}</Box>
+              <Box mt={6} dangerouslySetInnerHTML={{ __html: tabContent }} />
             </>
           )
         }}

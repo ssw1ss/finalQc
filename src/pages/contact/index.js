@@ -1,7 +1,7 @@
 import React from "react"
 
 import { Layout } from "ui/layouts"
-import { Section } from "ui/base"
+import { Button, Section } from "ui/base"
 
 const ContactPage = () => (
   <Layout>
@@ -24,7 +24,12 @@ const ContactPage = () => (
           </label>
         </div>
         <div>
-          <input type="submit" value="submit" />
+          <Button
+            as="input"
+            type="submit"
+            value="submit"
+            css={{ outline: "none", border: "none" }}
+          />
         </div>
       </form>
     </Section>

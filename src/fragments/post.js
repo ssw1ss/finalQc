@@ -12,8 +12,9 @@ export const postPreviewFragment = graphql`
       date
       image {
         childImageSharp {
-          fixed(width: 200, height: 200) {
-            ...GatsbyImageSharpFixed
+          fluid(maxWidth: 800) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
           }
         }
       }
@@ -31,8 +32,9 @@ export const postFullFragment = graphql`
       date
       image {
         childImageSharp {
-          fixed(width: 200, height: 200) {
-            ...GatsbyImageSharpFixed
+          fluid(maxWidth: 800) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
           }
         }
       }
@@ -51,8 +53,9 @@ export const productPreviewFragment = graphql`
       milk_type
       image {
         childImageSharp {
-          fixed(width: 200, height: 200) {
-            ...GatsbyImageSharpFixed
+          fluid(maxWidth: 800) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
           }
         }
       }
@@ -68,17 +71,31 @@ export const productFullFragment = graphql`
     frontmatter {
       type
       title
-      milk_type
-      milk_treatment
       image {
         childImageSharp {
-          fixed(width: 200, height: 200) {
-            ...GatsbyImageSharpFixed
+          fluid(maxWidth: 800) {
+            ...GatsbyImageSharpFluid
+            presentationWidth
           }
         }
       }
-      another
-      test
+      origin
+      milk_type
+      milk_treatment
+      texture
+      selection
+      producer
+      appearance
+      size
+      fidm
+      rennet
+      paste
+      holes
+      maturation
+      taste
+      bestby
+      ingredients
+      allergen
     }
   }
 `
