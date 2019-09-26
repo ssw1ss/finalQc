@@ -1,15 +1,14 @@
 import { graphql } from "gatsby"
 
-export const postPreviewFragment = graphql`
-  fragment PostPreview on Mdx {
+export const productPreviewFragment = graphql`
+  fragment ProductPreview on Mdx {
     id
-    excerpt(pruneLength: 10)
     fields {
       url
     }
     frontmatter {
       title
-      date
+      milk_type
       image {
         childImageSharp {
           fluid(maxWidth: 800) {
@@ -22,14 +21,14 @@ export const postPreviewFragment = graphql`
   }
 `
 
-export const postFullFragment = graphql`
-  fragment PostFull on Mdx {
+export const productFullFragment = graphql`
+  fragment ProductFull on Mdx {
     code {
       body
     }
     frontmatter {
+      type
       title
-      date
       image {
         childImageSharp {
           fluid(maxWidth: 800) {
@@ -38,6 +37,23 @@ export const postFullFragment = graphql`
           }
         }
       }
+      origin
+      milk_type
+      milk_treatment
+      texture
+      selection
+      producer
+      appearance
+      size
+      fidm
+      rennet
+      paste
+      holes
+      maturation
+      taste
+      bestby
+      ingredients
+      allergen
     }
   }
 `
