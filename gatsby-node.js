@@ -15,7 +15,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 }
 
 const BLOG_PATH_PREFIX = "/blog"
-const PRODUCTS_PATH_PREFIX = "/products"
+const PRODUCTS_PATH_PREFIX = "/product"
 
 const slugPrefixMap = {
   post: BLOG_PATH_PREFIX,

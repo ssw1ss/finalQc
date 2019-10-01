@@ -1,7 +1,7 @@
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { graphql } from "gatsby"
-import MDXRenderer from "gatsby-mdx/mdx-renderer"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 
@@ -95,7 +95,7 @@ const SinglePost = ({ data: { mdx } }) => {
           alignItems="flex-start"
         >
           <Content width={["100%", "100%", "60%"]}>
-            <MDXRenderer>{mdx.code.body}</MDXRenderer>
+            <MDXRenderer>{mdx.body}</MDXRenderer>
           </Content>
           <Card
             variant="default"

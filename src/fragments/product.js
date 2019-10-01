@@ -27,9 +27,7 @@ export const productPreviewFragment = graphql`
 
 export const productFullFragment = graphql`
   fragment ProductFull on Mdx {
-    code {
-      body
-    }
+    body
     frontmatter {
       type
       title

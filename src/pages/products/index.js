@@ -22,7 +22,7 @@ class ProductsPage extends ReactQueryParams {
   constructor(props) {
     super(props)
     const allProducts = props.data.allMdx.nodes
-    this.allProducts = allProducts
+    console.log("setting up", allProducts)
 
     // Get relevant filters, if any, and apply to productsList that will be used for productPages in state
     // const { page, ...filters } = this.queryParams
@@ -39,6 +39,7 @@ class ProductsPage extends ReactQueryParams {
     // Create pages for filtered products, or all products if no filters were applied
     const productPages = this.createProductPages(products)
     this.state = {
+      allProducts,
       productPages
     }
   }
@@ -69,11 +70,12 @@ class ProductsPage extends ReactQueryParams {
 
       return a
     }, [])
-    console.table(products)
+    console.table(filteredProducts)
     return products
   }
 
   render() {
+    console.log("initializing render...", this.props.data)
     const products = this.state.productPages
     const currentPage = Math.abs(Number(this.queryParams.page))
     let activeProducts
@@ -81,7 +83,7 @@ class ProductsPage extends ReactQueryParams {
       activeProducts = products[currentPage - 1]
     } else {
       activeProducts = products[0]
-      navigate("/products")
+      // navigate("/products")
     }
     return (
       <Layout>
