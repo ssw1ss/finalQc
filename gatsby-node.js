@@ -114,24 +114,24 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `)
       .then(result => {
-        const totalCount = result.data.allMdx.totalCount
-        const numPages = Math.ceil(totalCount / ipp)
-        Array.from({ length: numPages }).forEach((_, i) => {
-          const currentPage = i + 1
-          createPage({
-            path:
-              i === 0
-                ? `${PRODUCTS_PATH_PREFIX}`
-                : `${PRODUCTS_PATH_PREFIX}/page/${currentPage}`,
-            component: path.resolve(`./src/templates/products/index.js`),
-            context: {
-              limit: ipp,
-              skip: i * ipp,
-              numPages,
-              totalCount
-            }
-          })
-        })
+        // const totalCount = result.data.allMdx.totalCount
+        // const numPages = Math.ceil(totalCount / ipp)
+        // Array.from({ length: numPages }).forEach((_, i) => {
+        //   const currentPage = i + 1
+        //   createPage({
+        //     path:
+        //       i === 0
+        //         ? `${PRODUCTS_PATH_PREFIX}`
+        //         : `${PRODUCTS_PATH_PREFIX}/page/${currentPage}`,
+        //     component: path.resolve(`./src/templates/products/index.js`),
+        //     context: {
+        //       limit: ipp,
+        //       skip: i * ipp,
+        //       numPages,
+        //       totalCount
+        //     }
+        //   })
+        // })
         result.data.allMdx.edges.forEach(({ node }) => {
           createPage({
             path: `${node.fields.url}`,

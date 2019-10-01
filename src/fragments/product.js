@@ -8,7 +8,6 @@ export const productPreviewFragment = graphql`
     }
     frontmatter {
       title
-      milk_type
       image {
         childImageSharp {
           fluid(maxWidth: 800) {
@@ -17,6 +16,11 @@ export const productPreviewFragment = graphql`
           }
         }
       }
+      milk_type
+      milk_treatment
+      texture
+      selection
+      origin
     }
   }
 `
