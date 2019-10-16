@@ -65,6 +65,7 @@ const globalStyles = css`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    max-width: 1600px;
   }
   .gatsby-image-wrapper div {
     padding: 0;
@@ -88,8 +89,11 @@ const globalStyles = css`
       display: none;
     }
   }
-  .test p {
-    margin-bottom: 25px;
+  .mdxContent p {
+    margin-bottom: 1.25rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `
 

@@ -11,12 +11,7 @@ const SinglePost = ({ data: { mdx } }) => {
   return (
     <Layout>
       <Section>
-        <Article
-          date={date}
-          image={image}
-          title={title}
-          content={mdx.code.body}
-        />
+        <Article date={date} image={image} title={title} content={mdx.body} />
       </Section>
     </Layout>
   )

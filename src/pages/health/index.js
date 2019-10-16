@@ -8,7 +8,7 @@ import { ArticlePreview } from "components"
 
 const HealthPage = ({ data }) => (
   <Layout>
-    <Section mb={8}>
+    <Section mb={8} width={["100%", "100%", "75%"]} mx="auto">
       <Paragraph dropcap>
         Cheese has a long history in the human diet. In ancient times, cheese
         was primarily a concentrated form of milk with the benefit of a

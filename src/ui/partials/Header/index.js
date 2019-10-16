@@ -7,6 +7,7 @@ import { display } from "styled-system"
 import { Link, Section } from "ui/base"
 import logo from "res/images/logo.svg"
 import { links } from "ui/partials"
+import { NavLink } from "components"
 
 const Box = styled(BoxBase)`
   ${display};
@@ -15,15 +16,9 @@ const Box = styled(BoxBase)`
 const Menu = () => (
   <>
     {links.map(({ label, url }, i) => (
-      <Link
-        key={i}
-        to={url}
-        px={[2, 2, 3, 4]}
-        color="darkGray"
-        fontSize={[5, 5, 5, 4]}
-      >
+      <NavLink key={i} to={url} px={[2, 2, 3, 4]} fontSize={[5, 5, 5, 4]}>
         {label}
-      </Link>
+      </NavLink>
     ))}
   </>
 )

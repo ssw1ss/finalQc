@@ -7,7 +7,9 @@ import {
   faBars,
   faTimes,
   faPhone,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faSyncAlt,
+  faSortAmountDown
 } from "@fortawesome/free-solid-svg-icons"
 import { ThemeProvider } from "emotion-theming"
 import { Box } from "@rebass/emotion"
@@ -18,7 +20,14 @@ import theme from "ui/theme"
 import { Header, Footer, MobileMenu } from "ui/partials"
 
 // Import FA Icons
-library.add(faBars, faPhone, faTimes, faMapMarkerAlt)
+library.add(
+  faBars,
+  faPhone,
+  faTimes,
+  faMapMarkerAlt,
+  faSyncAlt,
+  faSortAmountDown
+)
 
 const Layout = ({ children }) => {
   const [modalIsActive, setModalIsActive] = useState(false)

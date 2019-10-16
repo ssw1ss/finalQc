@@ -3,7 +3,6 @@ const links = [
   { label: "Products", url: "/products" },
   { label: "Health", url: "/health" },
   { label: "Blog", url: "/blog" },
-  { label: "Gallery", url: "/gallery" },
   { label: "Contact", url: "/contact" }
 ]
 

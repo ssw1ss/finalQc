@@ -7,7 +7,7 @@ import { css } from "@emotion/core"
 
 import { ArticlePreview } from "components"
 import { Layout } from "ui/layouts"
-import { Button, H1, H5, Link, Paragraph, Section, Text } from "ui/base"
+import { Button, H1, H5, Paragraph, Section, Text } from "ui/base"
 import imgAlpenchili from "res/images/Alpenchili.png"
 import imgWorkedWith from "res/images/worked-with.png"
 import iconCheese from "res/images/icon-cheese.svg"
@@ -54,8 +54,8 @@ const IndexPage = ({ data }) => (
           textAlign={["center", "center", "left"]}
           fontSize={[0, 0, 0, "2.15rem"]}
         >
-          Bringing the best cheeses from Switzerland to the USA for over 20
-          years
+          For over 20 years, we've delivered the best cheeses from Switzerland
+          to the U.S
         </H1>
         <Button mt={[4, 5, 6]} to="/">
           Learn More
@@ -79,21 +79,25 @@ const IndexPage = ({ data }) => (
       >
         <Box width={["100%", "100%", "55%"]}>
           <Paragraph dropcap>
-            Fromage frais everyone loves. Monterey jack ricotta babybel.
-            Monterey jack ricotta babybel parmesan cheese. Over the years we
-            have kept on exploring and being fascinated by the health aspects of
-            tradtionally made cheeses. In 2013 Caroline founded the Adopt-an-Alp
-            program supporting transhumance, and cheeses that are more
-            charcterful, tasty and healthy than any others. Adopt-an-Alp has
-            been an unforeseen success. The program is growing, and soon, we
-            will announce a surprising new part of the program.
+            For over 2 decades, Quality Cheese has been the frontrunner when it
+            comes to providing the American cheese market with some of the best
+            Swiss cheeses. From the classics to specialty cheesees you've never
+            heard of before, the products we exclusively resource and bring to
+            the U.S reflect what our name promises.
           </Paragraph>
           <Paragraph>
-            But that is not all. The Mountain meadow milk selection contains
-            another jewel. Our partner InterCheese entered a collaboration with
-            Michelin-starred chef Stefan Wiesner who calls himself an
-            “Alchemist”. Check out this video and you will see why. Gault&Millau
-            calls it “ECO Cuisine” or “Cuisine of the Future”.
+            Over all these years Quality Cheese has established a network on
+            both sides of the Atlantic Ocean. We work with cheesemakers that
+            think outside the box, and knowing them personally has allowed us to
+            resource outstanding, innovative products. On the other side working
+            with the U.S. cheese market has connected us with a variety of
+            customers: from top chefs, specialty cheese and gourmet shops to
+            store chains that put an emphasis on quality.
+          </Paragraph>
+          <Paragraph>
+            Out of the vastness of great Swiss cheeses we have picked those
+            which are most beneficial to your health and are produced with
+            respect towards the animals, the workers, and the environment.
           </Paragraph>
         </Box>
         <Flex
@@ -131,12 +135,13 @@ const IndexPage = ({ data }) => (
             Our Products
           </H5>
           <Text mb={2}>
-            We distribute throughout the United States to restaurants, hotels
-            and grocery stores. How can we help you?
+            From the classics such as Gruyère and Sbrinz, to specialty cheeses
+            you may not know, check out our detailed portfolio of the best
+            cheeses from Switzerland
           </Text>
           <Box style={{ fontSize: ".75rem" }}>
             <Button mt={1} to="/">
-              Learn More
+              View Products
             </Button>
           </Box>
         </Card>
@@ -152,8 +157,9 @@ const IndexPage = ({ data }) => (
             Adopt An Alp
           </H5>
           <Text mb={2}>
-            We distribute throughout the United States to restaurants, hotels
-            and grocery stores. How can we help you?
+            Adopt an Alp in Switzerland and support the transhumance movement,
+            moving the livestock from one grazing ground to another, and get
+            some delicious and healthy cheeses in the fall!
           </Text>
           <Box style={{ fontSize: ".75rem" }}>
             <Button mt={1} to="/">

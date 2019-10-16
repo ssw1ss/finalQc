@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import { Box } from "@rebass/emotion"
-import MDXRenderer from "gatsby-mdx/mdx-renderer"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import { H3, FluidImage, Link as LinkBase, Text } from "ui/base"
 

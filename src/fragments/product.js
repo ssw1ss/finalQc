@@ -8,24 +8,26 @@ export const productPreviewFragment = graphql`
     }
     frontmatter {
       title
-      milk_type
       image {
         childImageSharp {
-          fluid(maxWidth: 800) {
+          fluid(maxWidth: 400, maxHeight: 320) {
             ...GatsbyImageSharpFluid
             presentationWidth
           }
         }
       }
+      milk_type
+      milk_treatment
+      texture
+      selection
+      origin
     }
   }
 `
 
 export const productFullFragment = graphql`
   fragment ProductFull on Mdx {
-    code {
-      body
-    }
+    body
     frontmatter {
       type
       title
