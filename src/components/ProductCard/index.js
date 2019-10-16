@@ -1,6 +1,6 @@
 import React from "react"
 import { Card } from "@rebass/emotion"
-import { Flex, FluidImage, H5, Icon, Link } from "ui/base"
+import { Flex, FluidImage, H6, Icon, Link } from "ui/base"
 
 const ProductCard = ({ info, ...props }) => {
   const { fields, frontmatter } = info
@@ -13,8 +13,8 @@ const ProductCard = ({ info, ...props }) => {
           <FluidImage style={{ width: "90%" }} fluid={img} />
         </Flex>
         <Flex alignItems="center" py={3}>
-          <Icon icon={milk_type} ml={3} mr={2} />
-          <H5 fontWeight="600">{title}</H5>
+          <Icon width="1.2rem" icon={milk_type} ml={3} mr={1} />
+          <H6 fontWeight="600">{title}</H6>
         </Flex>
       </Card>
     </Flex>

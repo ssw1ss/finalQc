@@ -3,28 +3,6 @@ require("dotenv").config({
 })
 const proxy = require("http-proxy-middleware")
 
-const algoliaSearchQuery = `
-  {
-    allMdx(filter: {
-      fields: {
-        type: {
-          eq: "product"
-        }
-      }
-    }) {
-      nodes {
-        fields {
-          url
-          type
-        }
-        frontmatter {
-          title
-        }
-      }
-    }
-  }
-`
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,

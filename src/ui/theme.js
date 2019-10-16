@@ -1,5 +1,5 @@
 export default {
-  breakpoints: ["650px", "850px", "1150px"],
+  breakpoints: ["650px", "850px", "1150px", "1350px"],
   cards: {
     default: {
       borderRadius: "7px",
@@ -28,7 +28,16 @@ export default {
     yellow: "#FFE600",
     lightYellow: "#FFF5CB"
   },
-  fontSizes: ["2em", "1.75em", "1.5em", "1.25em", "1.1em", "1em", ".9em"],
+  fontSizes: [
+    "2em",
+    "1.75em",
+    "1.5em",
+    "1.25em",
+    "1.1em",
+    "1em",
+    ".9em",
+    ".8em"
+  ],
   fontWeights: {
     normal: 400,
     semibold: 600,

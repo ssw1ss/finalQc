@@ -1,123 +1,207 @@
-import React from "react"
-import ReactQueryParams from "react-query-params"
-import { graphql } from "gatsby"
+import React, { useState, useRef } from "react"
+import { graphql, Link } from "gatsby"
 import { navigate } from "@reach/router"
-// import { Box } from "@rebass/emotion"
+import styled from "@emotion/styled"
+import { Box as BoxBase, Card } from "@rebass/emotion"
+import { display } from "styled-system"
+import { useClickAway } from "react-use"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+import { H1, Flex, Section, Text } from "ui/base"
 import { Layout } from "ui/layouts"
-import { Flex, Link, Section } from "ui/base"
 import { ProductCard } from "components"
 
-const productsPerPage = 9
-const defaultQueryParameters = {
-  page: 1,
-  milk_type: "",
-  milk_treatment: "",
-  texture: "",
-  selection: "",
-  origin: ""
-}
+import { Filters } from "../../pageComponents/products/Filters"
+import {
+  validateQueryParams,
+  validatePage,
+  validateFilters
+} from "../../pageComponents/products/utils"
 
-class ProductsPage extends ReactQueryParams {
-  constructor(props) {
-    super(props)
-    const allProducts = props.data.allMdx.nodes
-    console.log("setting up", allProducts)
-
-    // Get relevant filters, if any, and apply to productsList that will be used for productPages in state
-    // const { page, ...filters } = this.queryParams
-    // const hasFilters = Object.keys(filters).filter(key => {
-    //   return filters[key] !== ""
-    // })
-    // let products
-    // console.log(filters)
-    // if (hasFilters.length > 0)
-    //   products = this.filterProducts(allProducts, filters)
-    // else products = allProducts
-    let products = this.filterProducts(allProducts)
-
-    // Create pages for filtered products, or all products if no filters were applied
-    const productPages = this.createProductPages(products)
-    this.state = {
-      allProducts,
-      productPages
-    }
+const Box = styled(BoxBase)`
+  ${display}
+`
+const FiltersToggle = styled(Text)`
+  font-size: ${({ theme }) => theme.fontSizes[5]};
+  background: #eee;
+  border-radius: 3px;
+  padding: 0.3rem 1.5rem;
+  cursor: pointer;
+`
+const HR = styled(Box)`
+  height: 1px;
+  width: 100%;
+  background: #eee;
+  margin-bottom: 1rem;
+`
+const NoProducts = styled(Box)`
+  width: 100%;
+  padding: 4rem 0;
+  text-align: center;
+  background: #f8f8f8;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+`
+const PaginationItem = styled(Link)`
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.blue : "#ddd"};
+  color: ${({ isActive }) => (isActive ? "#fff" : "#575757")};
+  background: ${({ isActive, theme }) =>
+    isActive ? theme.colors.blue : "#fff"};
+  font-size: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 0.35rem;
+  &:hover {
+    background: ${({ isActive, theme }) =>
+      isActive ? theme.colors.blue : "#eee"};
   }
+`
 
-  createProductPages = products => {
-    let productPages = []
-    while (products.length) {
-      productPages.push(products.splice(0, productsPerPage))
-    }
-    return productPages
-  }
-
-  // needs to be passed filters from constructor or state
-  filterProducts = products => {
-    const { page, ...filters } = this.queryParams
-    // validate query params
-    let filteredProducts = Object.keys(filters).reduce((a, v) => {
-      const filterName = v
-      const filterValue = filters[v]
-
-      if (filterName in defaultQueryParameters && filterValue !== "") {
-        // filter is a valid query param and is not default/empty, use it to filter products
-        // const productsWithFilter = products.filter(product => {
-        //   return product.
-        // })
-        return [...a, { [v]: filters[v] }]
-      }
-
-      return a
-    }, [])
-    console.table(filteredProducts)
+const filterProducts = (products, filters) => {
+  if (filters !== null) {
+    const validFilters = validateFilters(filters)
+    const filteredProducts = Object.keys(validFilters).reduce((a, c) => {
+      if (c) {
+        return a.filter(node => {
+          return node.frontmatter[c] == validFilters[c]
+        })
+      } else return a
+    }, products)
+    return filteredProducts
+  } else {
     return products
   }
+}
 
-  render() {
-    console.log("initializing render...", this.props.data)
-    const products = this.state.productPages
-    const currentPage = Math.abs(Number(this.queryParams.page))
-    let activeProducts
-    if (currentPage && currentPage <= products.length) {
-      activeProducts = products[currentPage - 1]
+const ProductsPage = ({ data, location: { search } }) => {
+  const productsPerPage = 9
+  // maybe validate filters here first instead of inside filterProducts
+  const { filters, page } = validateQueryParams(search)
+  const products = filterProducts(data.allMdx.nodes, filters)
+  const maxPageNum = Math.ceil(products.length / productsPerPage)
+  const validPage = validatePage(page, maxPageNum)
+  let activePage = 1
+  if (validPage) activePage = validPage
+  else {
+    const stringifiedFilters = filters
+      ? `?filters=${JSON.stringify(filters)}`
+      : ``
+    navigate(`/products${stringifiedFilters}`)
+  }
+  const numPages = Math.ceil(products.length / productsPerPage)
+  let currentProducts = products.slice(
+    (activePage - 1) * productsPerPage,
+    activePage * productsPerPage
+  )
+
+  let productsContent =
+    currentProducts && currentProducts.length > 0 ? (
+      currentProducts.map(node => {
+        const { id, ...info } = node
+        return (
+          <ProductCard
+            info={info}
+            key={id}
+            flexBasis={["100%", "47.5%", "30%"]}
+            mb={6}
+          />
+        )
+      })
+    ) : (
+      <NoProducts>No products found</NoProducts>
+    )
+  const [visible, setVisible] = useState(false)
+  const filterRef = useRef(null)
+  useClickAway(filterRef, e => {
+    if (e.target.getAttribute("name") == "filter-toggle") {
+      e.stopPropagation()
     } else {
-      activeProducts = products[0]
-      // navigate("/products")
+      setVisible(false)
     }
-    return (
-      <Layout>
-        <Section mb={10}>
-          <h3 onClick={() => navigate("?page=2")}>asdf</h3>
-          <h3 onClick={() => navigate("?page=3")}>asdf</h3>
-          <Flex flexWrap="wrap" justifyContent="space-between">
-            {activeProducts.map(node => {
-              const { id, ...info } = node
-              return (
-                <ProductCard
-                  info={info}
-                  key={id}
-                  flexBasis={["100%", "47.5%", "30%"]}
-                  mb={6}
+  })
+
+  return (
+    <Layout>
+      <Section mb={10}>
+        <Flex justifyContent="space-between" pb={4}>
+          <H1>Products</H1>
+          <Box style={{ position: "relative" }}>
+            <FiltersToggle
+              name="filter-toggle"
+              onClick={() => setVisible(!visible)}
+            >
+              Filters <FontAwesomeIcon size="xs" icon="sort-amount-down" />
+            </FiltersToggle>
+            {visible && (
+              <Card
+                ref={filterRef}
+                variant="default"
+                style={{
+                  minWidth: "18rem",
+                  zIndex: "100",
+                  position: "absolute",
+                  right: "0",
+                  top: "100%"
+                }}
+                p={4}
+              >
+                <Filters
+                  filters={filters}
+                  mb={5}
+                  hideFilters={() => setVisible(false)}
                 />
+              </Card>
+            )}
+          </Box>
+        </Flex>
+        <HR />
+        <Flex flexWrap="wrap" justifyContent="space-between">
+          {productsContent}
+        </Flex>
+        <Box mt={7}>
+          <Flex justifyContent="center">
+            {Array.from({ length: numPages }).map((_, i) => {
+              let prefix = "?"
+              if (filters !== null) {
+                if (
+                  Object.entries(filters).length !== 0 &&
+                  filters.constructor === Object
+                ) {
+                  prefix = `?filters=${JSON.stringify(filters)}&`
+                }
+              }
+              return (
+                <PaginationItem
+                  key={i}
+                  isActive={i == activePage - 1}
+                  to={`/products${prefix}page=${i + 1}`}
+                >
+                  {i + 1}
+                </PaginationItem>
               )
             })}
           </Flex>
-          {/* <Flex justifyContent="space-between">
-            <Box>{links.prevLink}</Box>
-            <Box>{links.nextLink}</Box>
-          </Flex> */}
-        </Section>
-      </Layout>
-    )
-  }
-  defaultQueryParams = defaultQueryParameters
+          <Text textAlign="center" color="#999" pt={3}>
+            Showing page {activePage} of {numPages}
+          </Text>
+        </Box>
+      </Section>
+    </Layout>
+  )
 }
 
 export default ProductsPage
 
-export const productsPageQuery = graphql`
-  query productsPageQuery {
+export const datQuery = graphql`
+  query datQuery {
     allMdx(filter: { frontmatter: { type: { eq: "product" } } }) {
       nodes {
         ...ProductPreview

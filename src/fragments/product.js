@@ -10,7 +10,7 @@ export const productPreviewFragment = graphql`
       title
       image {
         childImageSharp {
-          fluid(maxWidth: 800) {
+          fluid(maxWidth: 400, maxHeight: 320) {
             ...GatsbyImageSharpFluid
             presentationWidth
           }

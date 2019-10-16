@@ -24,6 +24,7 @@ export const postPreviewFragment = graphql`
 
 export const postFullFragment = graphql`
   fragment PostFull on Mdx {
+    id
     body
     frontmatter {
       title
