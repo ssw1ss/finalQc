@@ -57,7 +57,7 @@ const IndexPage = ({ data }) => (
           For over 20 years, we've delivered the best cheeses from Switzerland
           to the U.S
         </H1>
-        <Button mt={[4, 5, 6]} to="/">
+        <Button mt={[4, 5, 6]} to="/about">
           Learn More
         </Button>
       </Flex>
@@ -140,7 +140,7 @@ const IndexPage = ({ data }) => (
             cheeses from Switzerland
           </Text>
           <Box style={{ fontSize: ".75rem" }}>
-            <Button mt={1} to="/">
+            <Button mt={1} to="/products">
               View Products
             </Button>
           </Box>
@@ -162,7 +162,7 @@ const IndexPage = ({ data }) => (
             some delicious and healthy cheeses in the fall!
           </Text>
           <Box style={{ fontSize: ".75rem" }}>
-            <Button mt={1} to="/">
+            <Button as="a" href="http://www.adopt-an-alp.com/" mt={1}>
               Learn More
             </Button>
           </Box>
