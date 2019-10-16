@@ -59,7 +59,7 @@ const AboutPage = () => (
       </Flex>
       <Text textAlign="center">
         <H1 fontSize={0} mt={4}>
-          Hello / Hällo
+          Hello / Hallo
         </H1>
         <H5 mt={3} style={{ maxWidth: "400px" }} mx="auto">
           We are Daniel and Caroline Hostettler, the owners of Quality Cheese

@@ -28,7 +28,7 @@ const cardTitle = css`
 `
 
 const productInfoMap = {
-  origin: "Origin",
+  origin: "Certification",
   texture: "Texture",
   selection: "Selection",
   producer: "Producer",
