@@ -70,8 +70,8 @@ const useRadios = initialState => {
     //   `You selected ${e.target.value}, which is part of ${e.target.name}`
     // )
     const filterName = e.target.name
-    const { options, label, checked } = values[filterName]
-    const newChecked = setValues({
+    const { options, label } = values[filterName]
+    setValues({
       ...values,
       [filterName]: {
         options,
