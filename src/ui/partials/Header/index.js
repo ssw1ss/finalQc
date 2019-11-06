@@ -9,6 +9,9 @@ import logo from "res/images/logo.svg"
 import { links } from "ui/partials"
 import { NavLink } from "components"
 
+import FBIcon from "res/icons/fb-icon.svg"
+import IGIcon from "res/icons/ig-icon.svg"
+
 const Box = styled(BoxBase)`
   ${display};
 `
@@ -56,7 +59,35 @@ const Header = ({ modal: { modalIsActive, setModalIsActive } }) => {
           </Text>
         </Box>
         <Box display={["none", "none", "block"]}>
-          <Menu />
+          <Flex>
+            <Menu />
+            <Flex ml={2}>
+              <a target="_blank" href="https://www.facebook.com/qualitycheese">
+                <img
+                  src={FBIcon}
+                  alt="Follow us on Facebook"
+                  title="Follow us on Facebook"
+                  style={{
+                    width: "26px",
+                    display: "inline-block",
+                    margin: "0 .25rem"
+                  }}
+                />
+              </a>
+              <a target="_blank" href="https://www.instagram.com/adoptanalp/">
+                <img
+                  src={IGIcon}
+                  alt="Follow us on Instagram"
+                  title="Follow us on Instagram"
+                  style={{
+                    width: "26px",
+                    display: "inline-block",
+                    margin: "0 .25rem"
+                  }}
+                />
+              </a>
+            </Flex>
+          </Flex>
         </Box>
       </Box>
     </Section>

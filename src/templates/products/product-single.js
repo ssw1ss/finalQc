@@ -122,7 +122,7 @@ const SinglePost = ({ data: { mdx } }) => {
           <Box width={["100%", "100%", "45%"]}>
             <Flex justifyContent="flex-start" alignItems="center">
               <Box pr={4}>
-                <Text>Alpenchili is distributed by:</Text>
+                <Text>{title} is distributed by:</Text>
                 <H3 my={2}>World's Best Cheese</H3>
                 <a href="https://www.wbcheese.com/">
                   Visit World's Best Cheese

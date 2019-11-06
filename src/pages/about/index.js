@@ -7,6 +7,7 @@ import { Layout } from "ui/layouts"
 import { H1, H5, Section, Paragraph } from "ui/base"
 import imgDaniel from "res/images/daniel.png"
 import imgCaroline from "res/images/caroline.png"
+import imgRocco from "res/images/rocco.png"
 
 const Flex = styled(FlexBase)`
   ${display};
@@ -32,18 +33,26 @@ const AboutPage = () => (
       <Flex justifyContent="center">
         <Image
           borderRadius="100%"
-          width="4.25rem"
-          mr={3}
-          height="4.25rem"
+          width="5rem"
+          mr={4}
+          height="5rem"
           src={imgCaroline}
           alt="Caroline Hostettler of Quality Cheese"
         />
         <Image
           borderRadius="100%"
-          width="4.25rem"
-          height="4.25rem"
+          width="5rem"
+          height="5rem"
           src={imgDaniel}
           alt="Daniel Hostettler of Quality Cheese"
+        />
+        <Image
+          borderRadius="100%"
+          width="5rem"
+          height="5rem"
+          src={imgRocco}
+          ml={4}
+          alt="Rocco the family dog, taste tester of Quality Cheese"
         />
       </Flex>
       <Text textAlign="center">
@@ -52,7 +61,7 @@ const AboutPage = () => (
         </H1>
         <H5 mt={3} style={{ maxWidth: "400px" }} mx="auto">
           We are Daniel and Caroline Hostettler, the owners of Quality Cheese
-          Inc
+          Inc, and thats our dog and taste tester Rocco
         </H5>
       </Text>
     </Section>
