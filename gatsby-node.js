@@ -148,5 +148,5 @@ exports.createPages = ({ graphql, actions }) => {
         reject(err)
       })
   })
-  return Promise.all([posts, products])
+  return Promise.all([products])
 }
