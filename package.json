@@ -51,7 +51,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "yarn build:client && yarn build:server",
+    "build": "yarn build:client",
     "build:client": "gatsby build",
     "build:server": "netlify-lambda build src/server",
     "clean": "rm -rf .cache",
