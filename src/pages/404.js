@@ -1,8 +1,7 @@
 import React from "react"
 
-// import Layout from "../components/layout"
-// import SEO from "../components/seo"
+import { Layout } from "ui/layouts"
 
-const NotFoundPage = () => <div>404 error</div>
+const NotFoundPage = () => <Layout>404 error</Layout>
 
 export default NotFoundPage

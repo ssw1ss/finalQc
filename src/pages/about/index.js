@@ -11,17 +11,6 @@ import imgCaroline from "res/images/caroline.png"
 const Flex = styled(FlexBase)`
   ${display};
 `
-
-const Button = styled("button")`
-  background: none;
-  border: none;
-  color: #575757;
-  margin-top: -0.5rem;
-  font-size: 1rem;
-  &:disabled {
-    opacity: 0.4;
-  }
-`
 const Label = styled("a")`
   cursor: pointer;
   color: #575757;
@@ -112,32 +101,60 @@ const AboutPage = () => (
       bg="lightYellow"
     >
       <H1 mb={7}>Friends &amp; Partners</H1>
-      <Label href="www.intercheese.ch">InterCheese AG</Label>
-      <Label href="www.wbcheese.com">World’s Best Cheeses</Label>
-      <Label href="www.rolfbeeler.ch">Rolf Beeler</Label>
-      <Label href="www.boncas.ch">Ueli Moser, bonCas AG</Label>
-      <Label href="www.willischmid.ch">Willi Schmid, Städtlichäsi</Label>
-      <Label href="www.cheesenet.ch">Sepp Barmettler, Stans</Label>
-      <Label href="www.bodensee-kaese.ch">Bodensee-Käse AG</Label>
-      <Label href="www.kaeserei-studer.ch">Käserei Studer, Hatswil</Label>
-      <Label href="www.milchmanufaktur.ch">Milchmanufaktur Einsiedeln</Label>
-      <Label href="www.oberbergkaeserei.ch">
+      <Label target="_blank" href="https://www.intercheese.ch">
+        InterCheese AG
+      </Label>
+      <Label target="_blank" href="https://www.wbcheese.com">
+        World’s Best Cheeses
+      </Label>
+      <Label target="_blank" href="https://www.rolfbeeler.ch">
+        Rolf Beeler
+      </Label>
+      <Label target="_blank" href="https://www.boncas.ch">
+        Ueli Moser, bonCas AG
+      </Label>
+      <Label target="_blank" href="https://www.willischmid.ch">
+        Willi Schmid, Städtlichäsi
+      </Label>
+      <Label target="_blank" href="https://www.cheesenet.ch">
+        Sepp Barmettler, Stans
+      </Label>
+      <Label target="_blank" href="https://www.bodensee-kaese.ch">
+        Bodensee-Käse AG
+      </Label>
+      <Label target="_blank" href="https://www.kaeserei-studer.ch">
+        Käserei Studer, Hatswil
+      </Label>
+      <Label target="_blank" href="https://www.milchmanufaktur.ch">
+        Milchmanufaktur Einsiedeln
+      </Label>
+      <Label target="_blank" href="https://www.oberbergkaeserei.ch">
         Franz Renggli, Bergkäserei Oberberg
       </Label>
-      <Label href="www.kaeserei-marbach.ch">
+      <Label target="_blank" href="https://www.kaeserei-marbach.ch">
         Bergkäserei Marbach, Entlebuch
       </Label>
-      <Label href="www.hauser-authentique.ch">Patrick Hauser, Le Lieu</Label>
-      <Label href="www.schmid-kaese.ch">Manfred Schmid, Adelboden</Label>
-      <Label href="www.seilerkaese.ch		">Seiler Raclette, Sarnen</Label>
-      <Label href="www.cheesesfromswitzerland.com">
+      <Label target="_blank" href="https://www.hauser-authentique.ch">
+        Patrick Hauser, Le Lieu
+      </Label>
+      <Label target="_blank" href="https://www.schmid-kaese.ch">
+        Manfred Schmid, Adelboden
+      </Label>
+      <Label target="_blank" href="https://www.seilerkaese.ch		">
+        Seiler Raclette, Sarnen
+      </Label>
+      <Label target="_blank" href="https://www.cheesesfromswitzerland.com">
         Switzerland Cheese Marketing
       </Label>
-      <Label href="www.schweizeralpkaese.ch">Schweizer Alpkäse</Label>
-      <Label href="www.stefanwiesner.ch">
+      <Label target="_blank" href="https://www.schweizeralpkaese.ch">
+        Schweizer Alpkäse
+      </Label>
+      <Label target="_blank" href="http://www.stefanwiesner.ch">
         Chef Stefan Wiesner, Escholzmatt
       </Label>
-      <Label href="www.publichistory.ch">Dominik Flammer</Label>
+      <Label target="_blank" href="https://www.publichistory.ch">
+        Dominik Flammer
+      </Label>
     </Section>
   </Layout>
 )

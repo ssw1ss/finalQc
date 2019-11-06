@@ -40,12 +40,7 @@ const ContactPage = () => (
           data-netlify="true"
           style={{ width: "100%" }}
         >
-          <input
-            css={inputStyles}
-            type="hidden"
-            name="contact"
-            value="contact"
-          />
+          <input type="hidden" name="form-name" value="contact" />
           <Box>
             <label>
               Your Name:{" "}
@@ -84,7 +79,7 @@ const ContactPage = () => (
               as="input"
               type="submit"
               value="Submit"
-              css={{ outline: "none", border: "none" }}
+              css={{ outline: "none", border: "none", cursor: "pointer" }}
             />
           </Box>
         </form>

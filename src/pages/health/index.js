@@ -3,8 +3,9 @@ import { graphql } from "gatsby"
 import { Box, Card, Text } from "@rebass/emotion"
 
 import { Layout } from "ui/layouts"
-import { Flex, H1, H3, Section, Paragraph } from "ui/base"
-import { ArticlePreview } from "components"
+import { Flex, H1, H3, H4, Section, Paragraph } from "ui/base"
+// import { ArticlePreview } from "components"
+import alpMeadow from "res/images/alp-meadow.png"
 
 const HealthPage = ({ data }) => (
   <Layout>
@@ -31,7 +32,7 @@ const HealthPage = ({ data }) => (
       </Paragraph>
     </Section>
 
-    <Section mb={7}>
+    <Section mb={4}>
       <Flex flexWrap="wrap" justifyContent="space-between">
         <Flex
           mb={7}
@@ -75,6 +76,28 @@ const HealthPage = ({ data }) => (
                 Wehrmuller
               </Text>
             </Box>
+            <Box mb={4}>
+              <Text mb={1} fontWeight="600">
+                Cheese fights cancer
+              </Text>
+              <Text>
+                It contains CLA (conjugated linoleic acid) and sphingolipids
+                which are anti-carcinogenic compounds. Vitamin amounts are
+                significantly higher in cheese compared to milk. Vitamin A by a
+                factor of 5.4, Vitamin E by 4.8, B2 by 3.4 and B1 by 1.7.
+              </Text>
+            </Box>
+            <Box mb={4}>
+              <Text mb={1} fontWeight="600">
+                Cheese fights carries
+              </Text>
+              <Text>
+                Still the most prevalent dental disease. Bacteria ferment sugar
+                and starch which creates acids that attack the tooth enamel. A
+                bite of (aged)cheese though brings pH rapidly to normal levels
+                due to calcium and phosphorus.
+              </Text>
+            </Box>
           </Card>
         </Flex>
         <Flex
@@ -86,63 +109,58 @@ const HealthPage = ({ data }) => (
           <Card variant="flat" bg="lightYellow">
             <Box mb={4}>
               <Text mb={1} fontWeight="600">
-                Zinc &amp; Phosphorous
+                If you are lactose intolerant, you can’t eat cheese.
               </Text>
               <Text>
-                Abundant in cheese, the amounts are higher in hard than soft
-                cheeses. Zinc works as an activator for many enzymes, is
-                important for storing Insulin and strengthens the immune system.
-                Phosphorus is beneficial for bones & teeth.
+                Lactose is partly washed away with the whey and the rest
+                fermented into lactic acid within 24 hours of ripening. All
+                types of cheese except fresh and, in a few cases, soft cheese,
+                are free of lactose. So are all buffalo milk cheeses.
               </Text>
             </Box>
             <Box mb={4}>
               <Text mb={1} fontWeight="600">
-                Calcium
+                The trans fatty acids in cheese enhance the risk of coronary
+                heart disease.
               </Text>
               <Text>
-                Arguably the most important mineral in cheese. Adults should
-                intake 1000mg, adolescents even 1200mg of calcium a day. 3.5 oz
-                (100gr) of hard or semihard cheeses deliver the daily amount for
-                an adult. Calcium is not only essential for the bones and teeth,
-                it plays a major factor in the transmission of impulses in the
-                nervous system.
+                Clinical studies show quite the opposite: trans fatty acids of
+                ruminants do not alter the cholesterol, even a negative
+                correlation has been observed in men and women. It is mostly
+                unnatural trans fatty acids resulting from the incomplete
+                hardening of vegetable oils that increase the risk of heart
+                disease.
               </Text>
             </Box>
             <Box mb={4}>
               <Text mb={1} fontWeight="600">
-                Proteins
+                If you want to lose weight with a low-energy-diet you should
+                stay away from eating cheese.
               </Text>
               <Text>
-                Read this study about cheese and it’s effects on health, by
-                Barbara Walther, Alexandra Schmid, Robert Sieber, Karin
-                Wehrmuller
+                Again, the newest research shows different. In fact, overweight
+                women seem the ones to profit mostly from a low-energy-diet that
+                includes the consumption of (full-fat) cheeses. They also have a
+                high satiety value.
+              </Text>
+            </Box>
+            <Box mb={4}>
+              <Text mb={1} fontWeight="600">
+                People with high blood pressure should not consume diary
+                products.
+              </Text>
+              <Text>
+                In several studies dairy products have shown a beneficial effect
+                on blood pressure, especially in mildly hypertensive subjects.
+                Two main components seem to be relevant in this situation:
+                calcium and bioactive peptides. Instead: Failure to ingest
+                adequate amounts of dairy products increases the risk of
+                hypertensive heart disease.
               </Text>
             </Box>
           </Card>
         </Flex>
       </Flex>
-    </Section>
-
-    <Section mb={10}>
-      <H1 mb={7} textAlign="center">
-        Related Reading
-      </H1>
-      <Box width={["100%", "90%", "75%"]} mx="auto">
-        {data.allMdx.edges.map(({ node }, i) => {
-          let { id, excerpt, frontmatter, fields } = node
-          let { title, image, date } = frontmatter
-          return (
-            <ArticlePreview
-              key={id}
-              date={date}
-              image={image}
-              title={title}
-              excerpt={excerpt}
-              slug={fields.url}
-            />
-          )
-        })}
-      </Box>
     </Section>
   </Layout>
 )

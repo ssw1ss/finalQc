@@ -19,23 +19,30 @@ const FilterProductsButton = styled(FilterButton)`
   color: #fff;
 `
 
-const defaultFilters = {
-  milk_type: {
+const defaultFilters = [
+  {
+    name: "milk_type",
     options: ["Buffalo", "Cow", "Goat", "Sheep"],
     checked: null,
-    label: "Milk Type"
+    label: "Milk Type",
+    id: "p1"
   },
-  milk_treatment: {
+  {
+    name: "milk_treatment",
     options: ["Raw", "Pasteurized", "Thermized"],
     checked: null,
-    label: "Treatment"
+    label: "Treatment",
+    id: "p2"
   },
-  texture: {
+  {
+    name: "texture",
     options: ["Soft", "Semihard", "Hard"],
     checked: null,
-    label: "Texture"
+    label: "Texture",
+    id: "p3"
   },
-  origin: {
+  {
+    name: "origin",
     options: [
       "Alpage",
       "Certified Mountain Cheese",
@@ -44,49 +51,51 @@ const defaultFilters = {
       "Available Certified Organic"
     ],
     checked: null,
-    label: "Origin"
+    label: "Origin",
+    id: "p4"
   },
-  selection: {
+  {
+    name: "selection",
     options: ["Hostettler", "Beeler"],
     checked: null,
-    label: "Selection"
+    label: "Selection",
+    id: "p5"
   }
-}
+]
 
-const getUIFilters = filters => {
-  let defaults = cloneDeep(defaultFilters)
+const getUIFromParams = filters => {
+  const defaults = cloneDeep(defaultFilters)
   if (filters) {
-    Object.entries(filters).map(([key, value]) => {
-      defaults[key].checked = value
+    return defaults.map(filter => {
+      const name = filter.name
+      if (filters.hasOwnProperty(name)) {
+        filter.checked = filters[name]
+      }
+      return filter
     })
+  } else {
+    return defaults
   }
-  return defaults
 }
 
 const useRadios = initialState => {
   const [values, setValues] = useState(initialState)
   const setRadios = e => {
-    // console.log(
-    //   `You selected ${e.target.value}, which is part of ${e.target.name}`
-    // )
     const filterName = e.target.name
-    const { options, label } = values[filterName]
-    setValues({
-      ...values,
-      [filterName]: {
-        options,
-        label,
-        checked: e.target.value
+    const newValues = values.map(value => {
+      if (value.name === filterName) {
+        value.checked = e.target.value
       }
+      return value
     })
+    setValues(newValues)
   }
   const filterValues = () => {
-    const clonedFilters = cloneDeep(values)
-    const checkedFilters = Object.keys(clonedFilters).reduce((acc, key) => {
-      if (clonedFilters[key].checked !== null) {
-        return { ...acc, [key]: clonedFilters[key].checked }
+    const checkedFilters = values.reduce((a, c) => {
+      if (c.checked !== null) {
+        return { ...a, [c.name]: c.checked }
       }
-      return acc
+      return a
     }, {})
     if (
       Object.entries(checkedFilters).length !== 0 &&
@@ -96,15 +105,16 @@ const useRadios = initialState => {
     }
   }
   const resetValues = async () => {
+    console.log(defaultFilters)
     await navigate("/products/")
-    setValues({ ...defaultFilters })
+    setValues(defaultFilters)
   }
   return [values, setRadios, filterValues, resetValues]
 }
 
 const Filters = ({ filters, hideFilters, ...props }) => {
   const [radios, setRadios, filter, reset] = useRadios(() =>
-    getUIFilters(filters)
+    getUIFromParams(filters)
   )
   const handleFilter = () => {
     filter()
@@ -125,18 +135,16 @@ const Filters = ({ filters, hideFilters, ...props }) => {
         </FilterButton>
       </Flex>
       <form {...props}>
-        {Object.entries(radios).map(([key, values], i) => {
-          const radioGroup = key
-          const { options, checked, label } = values
+        {radios.map(({ name, options, checked, label, id }) => {
           return (
-            <Flex flexDirection="column" key={i} mb={4}>
+            <Flex flexDirection="column" key={id} mb={4}>
               <H6 mb={1}>{label}</H6>
-              {options.map((option, idx) => (
-                <label key={idx}>
+              {options.map(option => (
+                <label key={option}>
                   <Flex>
                     <input
                       type="radio"
-                      name={radioGroup}
+                      name={name}
                       value={option}
                       checked={checked === option}
                       onChange={setRadios}

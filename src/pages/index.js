@@ -1,14 +1,12 @@
 import React from "react"
-import { graphql } from "gatsby"
 import { Box, Card, Flex as FlexBase, Image } from "@rebass/emotion"
 import { display } from "styled-system"
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 
-import { ArticlePreview } from "components"
 import { Layout } from "ui/layouts"
 import { Button, H1, H5, Paragraph, Section, Text } from "ui/base"
-import imgAlpenchili from "res/images/Alpenchili.png"
+import bigCheese from "res/images/Chardonnay-Truffle-Bio.png"
 import imgWorkedWith from "res/images/worked-with.png"
 import iconCheese from "res/images/icon-cheese.svg"
 import iconAlp from "res/images/icon-alp.svg"
@@ -18,11 +16,10 @@ const Flex = styled(FlexBase)`
 `
 const yellowBG = css`
   position: relative;
-  max-width: 350px;
   &:after {
     content: "";
-    width: 180%;
-    height: 180%;
+    width: 33rem;
+    height: 33rem;
     border-radius: 50%;
     background: linear-gradient(#fffced, #ffefb0);
     position: absolute;
@@ -40,7 +37,7 @@ const cardIcon = css`
   width: 3.5rem;
 `
 
-const IndexPage = ({ data }) => (
+const IndexPage = () => (
   <Layout>
     <Section as={Flex} alignItems="center" justifyContent="space-between">
       <Flex
@@ -65,11 +62,11 @@ const IndexPage = ({ data }) => (
         flexDirection="column"
         alignItems="center"
         fontSize=".9rem"
-        width={["0", "0%", "40%"]}
+        width={["0", "0%", "28rem"]}
         css={yellowBG}
         display={["none", "none", "block"]}
       >
-        <Image width="100%" src={imgAlpenchili} />
+        <img src={bigCheese} />
       </Flex>
     </Section>
     <Section mt={9}>
@@ -122,7 +119,7 @@ const IndexPage = ({ data }) => (
         </Flex>
       </Flex>
     </Section>
-    <Section mt={8} mb={9} py={7} bg="lightBlue">
+    <Section mt={8} mb={3} py={8} bg="lightBlue">
       <Flex justifyContent="space-between" flexDirection={["column", "row"]}>
         <Card
           variant="default"
@@ -169,40 +166,7 @@ const IndexPage = ({ data }) => (
         </Card>
       </Flex>
     </Section>
-    <Section mb={10}>
-      <H1 textAlign="center" mb={7}>
-        Latest Posts
-      </H1>
-      <Box width={["100%", "90%", "75%"]} mx="auto">
-        {data.allMdx.edges.map(({ node }) => {
-          let { id, excerpt, fields, frontmatter } = node
-          let { title, date, image } = frontmatter
-          return (
-            <ArticlePreview
-              key={id}
-              date={date}
-              image={image}
-              title={title}
-              excerpt={excerpt}
-              slug={fields.url}
-            />
-          )
-        })}
-      </Box>
-    </Section>
   </Layout>
 )
-
-export const HomePageQuery = graphql`
-  query homePageQuery {
-    allMdx(filter: { frontmatter: { type: { eq: "post" } } }, limit: 3) {
-      edges {
-        node {
-          ...PostPreview
-        }
-      }
-    }
-  }
-`
 
 export default IndexPage
