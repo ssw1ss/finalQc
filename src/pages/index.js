@@ -78,7 +78,7 @@ const IndexPage = () => (
           <Paragraph dropcap>
             For over 2 decades, Quality Cheese has been the frontrunner when it
             comes to providing the American cheese market with some of the best
-            Swiss cheeses. From the classics to specialty cheesees you've never
+            Swiss cheeses. From the classics to specialty cheeses you've never
             heard of before, the products we exclusively resource and bring to
             the U.S reflect what our name promises.
           </Paragraph>
