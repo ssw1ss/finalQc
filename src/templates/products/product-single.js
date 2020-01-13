@@ -147,7 +147,7 @@ const SinglePost = ({ data: { mdx } }) => {
                     <Box mr={2} color="blue">
                       <FontAwesomeIcon icon="phone" />
                     </Box>
-                    <Text>1-800 WB-CHEESE</Text>
+                    <Text>1-800-843-2378</Text>
                   </Flex>
                 </Box>
                 <Box width={["100%", "45%"]} mt={[5, 0]}>
