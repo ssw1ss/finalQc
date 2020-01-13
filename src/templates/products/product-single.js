@@ -11,7 +11,13 @@ import { Box, Card, Image, Text } from "@rebass/emotion"
 import { borders } from "styled-system"
 import { Content } from "components"
 
-import imgWBC from "res/images/wbc.png"
+// import imgWBC from "res/images/wbc.png"
+// <Image
+//   borderRadius="100%"
+//   width="5rem"
+//   height="5rem"
+//   src={imgWBC}
+// />
 
 const CardItem = styled(Box)`
   ${borders};
@@ -113,64 +119,74 @@ const SinglePost = ({ data: { mdx } }) => {
           <Box width={["100%", "100%", "45%"]} mb={5}>
             <H1 mb={4}>Looking to buy this cheese?</H1>
             <Text>
-              Whether you’re a restauranteur, business owner or just want to buy
+              Whether you’re a restaurateur, business owner or just want to buy
               this for personal consumption, get in touch with the distributor.
               You can call them for sales, or find shops that carry what you’re
               looking for.
             </Text>
           </Box>
           <Box width={["100%", "100%", "45%"]}>
-            <Flex justifyContent="flex-start" alignItems="center">
-              <Box pr={4}>
-                <Text>{title} is distributed by:</Text>
-                <H3 my={2}>World's Best Cheese</H3>
-                <a href="https://www.wbcheese.com/">
-                  Visit World's Best Cheese
-                </a>
-              </Box>
-              <Image
-                borderRadius="100%"
-                width="5rem"
-                height="5rem"
-                src={imgWBC}
-              />
-            </Flex>
-            <Flex
-              mt={6}
-              flexDirection={["column", "row"]}
-              justifyContent="space-between"
-            >
-              <Box width={["100%", "45%"]}>
-                <H6 mb={3}>East Coast Location</H6>
+            <Box>
+              <a href="https://www.wbcheese.com/">
+                <H4 my={2}>World's Best Cheese</H4>
+              </a>
+              <Flex
+                mt={3}
+                flexDirection={["column", "row"]}
+                justifyContent="space-between"
+              >
+                <Box width={["100%", "45%"]}>
+                  <H6 mb={3}>East Coast Location</H6>
+                  <Flex fontSize={6} mb={3}>
+                    <Box mr={2} color="blue">
+                      <FontAwesomeIcon icon="map-marker-alt" />
+                    </Box>
+                    <Text>111 Business Park Drive Armonk, NY 10504</Text>
+                  </Flex>
+                  <Flex fontSize={6}>
+                    <Box mr={2} color="blue">
+                      <FontAwesomeIcon icon="phone" />
+                    </Box>
+                    <Text>1-800 WB-CHEESE</Text>
+                  </Flex>
+                </Box>
+                <Box width={["100%", "45%"]} mt={[5, 0]}>
+                  <H6 mb={2}>West Coast Location</H6>
+                  <Flex fontSize={6} mb={3}>
+                    <Box mr={2} color="blue">
+                      <FontAwesomeIcon icon="map-marker-alt" />
+                    </Box>
+                    <Text>2200 North Loop Road Alameda, CA 94502</Text>
+                  </Flex>
+                  <Flex fontSize={6}>
+                    <Box mr={2} color="blue">
+                      <FontAwesomeIcon icon="phone" />
+                    </Box>
+                    <Text>1-800-477-5262</Text>
+                  </Flex>
+                </Box>
+              </Flex>
+            </Box>
+            <Box mt={6}>
+              <a href="https://aniata.com/">
+                <H4 my={2}>The Aniata Cheese Company</H4>
+              </a>
+
+              <Box>
                 <Flex fontSize={6} mb={3}>
                   <Box mr={2} color="blue">
                     <FontAwesomeIcon icon="map-marker-alt" />
                   </Box>
-                  <Text>111 Business Park Drive Armonk, NY 10504</Text>
+                  <Text>2332 La Mirada Drive, Suite 1000 Vista, CA 92081</Text>
                 </Flex>
                 <Flex fontSize={6}>
                   <Box mr={2} color="blue">
                     <FontAwesomeIcon icon="phone" />
                   </Box>
-                  <Text>1-800 WB-CHEESE</Text>
+                  <Text>1-760-599-0151</Text>
                 </Flex>
               </Box>
-              <Box width={["100%", "45%"]} mt={[5, 0]}>
-                <H6 mb={2}>West Coast Location</H6>
-                <Flex fontSize={6} mb={3}>
-                  <Box mr={2} color="blue">
-                    <FontAwesomeIcon icon="map-marker-alt" />
-                  </Box>
-                  <Text>2200 North Loop Road Alameda, CA 94502</Text>
-                </Flex>
-                <Flex fontSize={6}>
-                  <Box mr={2} color="blue">
-                    <FontAwesomeIcon icon="phone" />
-                  </Box>
-                  <Text>1-800-477-5262</Text>
-                </Flex>
-              </Box>
-            </Flex>
+            </Box>
           </Box>
         </Flex>
       </Section>
