@@ -29,68 +29,81 @@ const Menu = () => (
 const Header = ({ modal: { modalIsActive, setModalIsActive } }) => {
   const icon = modalIsActive ? "times" : "bars"
   return (
-    <Section
-      as={Flex}
-      mt={3}
-      mb={7}
-      justifyContent="space-between"
-      alignItems={["flex-start", "flex-start", "center"]}
-    >
-      <Box order={2} />
-      <Box order={[2, 2, 1]}>
-        <Link to="/">
-          <Image width="10.5rem" src={logo} alt="Quality Cheese" />
-        </Link>
-      </Box>
-      <Box order={3} style={{ position: "relative" }}>
-        <Box
-          p={3}
-          onClick={() => setModalIsActive(prevState => !prevState)}
-          display={["block", "block", "none"]}
-          style={{
-            position: "absolute",
-            right: "0",
-            zIndex: "100",
-            cursor: "pointer"
-          }}
+    <>
+      <Flex bg="yellow" py={2} justifyContent="center">
+        <a
+          href="http://www.adopt-an-alp.com/"
+          style={{ textDecoration: "none", color: "black" }}
         >
-          <Text fontSize={2} color="darkGray">
-            <FontAwesomeIcon icon={icon} />
-          </Text>
+          COVID-19: Read Here
+        </a>
+      </Flex>
+      <Section
+        as={Flex}
+        mt={3}
+        mb={7}
+        justifyContent="space-between"
+        alignItems={["flex-start", "flex-start", "center"]}
+      >
+        <Box order={2} />
+        <Box order={[2, 2, 1]}>
+          <Link to="/">
+            <Image width="10.5rem" src={logo} alt="Quality Cheese" />
+          </Link>
         </Box>
-        <Box display={["none", "none", "block"]}>
-          <Flex>
-            <Menu />
-            <Flex ml={2}>
-              <a target="_blank" href="https://www.facebook.com/qualitycheese">
-                <img
-                  src={FBIcon}
-                  alt="Follow us on Facebook"
-                  title="Follow us on Facebook"
-                  style={{
-                    width: "26px",
-                    display: "inline-block",
-                    margin: "0 .25rem"
-                  }}
-                />
-              </a>
-              <a target="_blank" href="https://www.instagram.com/adoptanalp/">
-                <img
-                  src={IGIcon}
-                  alt="Follow us on Instagram"
-                  title="Follow us on Instagram"
-                  style={{
-                    width: "26px",
-                    display: "inline-block",
-                    margin: "0 .25rem"
-                  }}
-                />
-              </a>
+        <Box order={3} style={{ position: "relative" }}>
+          <Box
+            p={3}
+            onClick={() => setModalIsActive(prevState => !prevState)}
+            display={["block", "block", "none"]}
+            style={{
+              position: "absolute",
+              right: "0",
+              zIndex: "100",
+              cursor: "pointer"
+            }}
+          >
+            <Text fontSize={2} color="darkGray">
+              <FontAwesomeIcon icon={icon} />
+            </Text>
+          </Box>
+          <Box display={["none", "none", "block"]}>
+            <Flex>
+              <Menu />
+              <Flex ml={2}>
+                <a
+                  target="_blank"
+                  href="https://www.facebook.com/qualitycheese"
+                >
+                  <img
+                    src={FBIcon}
+                    alt="Follow us on Facebook"
+                    title="Follow us on Facebook"
+                    style={{
+                      width: "26px",
+                      display: "inline-block",
+                      margin: "0 .25rem"
+                    }}
+                  />
+                </a>
+                <a target="_blank" href="https://www.instagram.com/adoptanalp/">
+                  <img
+                    src={IGIcon}
+                    alt="Follow us on Instagram"
+                    title="Follow us on Instagram"
+                    style={{
+                      width: "26px",
+                      display: "inline-block",
+                      margin: "0 .25rem"
+                    }}
+                  />
+                </a>
+              </Flex>
             </Flex>
-          </Flex>
+          </Box>
         </Box>
-      </Box>
-    </Section>
+      </Section>
+    </>
   )
 }
 
