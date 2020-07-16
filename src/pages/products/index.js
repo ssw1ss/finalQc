@@ -202,7 +202,10 @@ export default ProductsPage
 
 export const datQuery = graphql`
   query datQuery {
-    allMdx(filter: { frontmatter: { type: { eq: "product" } } }) {
+    allMdx(
+      sort: { fields: frontmatter___title }
+      filter: { frontmatter: { type: { eq: "product" } } }
+    ) {
       nodes {
         ...ProductPreview
       }
