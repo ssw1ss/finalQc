@@ -7,7 +7,7 @@ import { css } from "@emotion/core"
 import { Layout } from "ui/layouts"
 import { Button, H1, H5, Paragraph, Section, Text } from "ui/base"
 import bigCheese from "res/images/Chardonnay-Truffle-Bio.png"
-import imgWorkedWith from "res/images/worked-with.png"
+import foreverCheese from "res/images/forever-cheese.png"
 import iconCheese from "res/images/icon-cheese.svg"
 import iconAlp from "res/images/icon-alp.svg"
 
@@ -108,14 +108,17 @@ const IndexPage = () => (
             style={{ letterSpacing: "1px", textTransform: "uppercase" }}
             textAlign="center"
           >
-            Who We've Worked With
+            We Have A New Partner
           </Text>
           <Image
             mt={4}
             mx="auto"
             style={{ maxWidth: "300px", display: "block" }}
-            src={imgWorkedWith}
+            src={foreverCheese}
           />
+          <Text>
+          As of July 2023 Forever Cheese is the new and exclusive import/distributor partner of Quality Cheese and InterCheese AG and replaces World's Best Cheeses.
+          </Text>
         </Flex>
       </Flex>
     </Section>

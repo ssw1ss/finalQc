@@ -74,19 +74,25 @@ const AboutPage = () => (
           beginning the portfolio consisted of cheeses that were exceptional in
           quality and distinguishably different from the standard Swiss cheeses
           that were available in the US at that time. Max McCalman, “Dean of
-          Cheese” and author of “Cheese - a Connaisseur’s Guide to the World’s
+          Cheese” and author of “Cheese - a Connaisseur's Guide to the World's
           Best” wrote: “Caroline Hostettler has singlehandedly raised the bar
-          for artisan cheesemaking in the U.S.!”
+          for artisan cheesemaking in the U.S.!”At first, Quality Cheese
+          imported exclusively cheeses by affineur Rolf Beeler, but then in
+          2006, in an ever growing market, we added the “Caroline Hostettler
+          Line”.
         </Paragraph>
 
+        <H2>Into the future with Forever Cheese!</H2>
         <Paragraph>
-          At first, Quality Cheese imported exclusively cheeses by affineur Rolf
-          Beeler, but then in 2006, in an ever growing market, we added the
-          “Caroline Hostettler Line”. The same year we choose Crystal Food
-          Imports as our US partner which has since become “World’s Best
-          Cheeses”. Over the past 20 years in business a lot has changed. We got
-          competitors, but we are still the only company with an air program in
-          order to bring the soft cheeses fresh and safe to the U.S.
+          After 25 years in business we have made the decision with our Swiss
+          partner “InterCheese AG” to work exklusively with Forever Cheese as
+          importer and distributor of the Quality Cheese Portfolio. We are
+          absolutely delighted to have found a partner with an excellent name in
+          the trade and are sure to finally be able to deliver our products to
+          more places in the US market. Since we started in 1997 a lot has
+          changed, we got more competitors, but we are still the only company
+          with an air program in order to bring the soft cheeses fresh and safe
+          to the U.S.
         </Paragraph>
 
         <Paragraph>
@@ -94,9 +100,10 @@ const AboutPage = () => (
           the health aspect of cheeses. Hence Caroline created the
           “Adopt-an-Alp”-program in 2013 in order to support transhumance, the
           moving of livestock from one grazing ground to another seasonally, and
-          bring highly regarded and truly healthy Alpage cheeses (or Alpkäse) on
-          the market. These treasures are only made in the summer and in the
-          fresh air of the Swiss Alp and Jura mountain range.
+          bring highly regarded and truly healthy Alpage cheeses (or Alpkäse)
+          onto the U.S. market. These treasures are only made in the summer and
+          in the fresh air and pristine pastures of the Swiss Alps and Jura
+          mountain range.
         </Paragraph>
       </Box>
     </Section>
