@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color: #575757;
+  font-size: 16px;
+  line-height: 1.5;
+  @media (min-width: 850px) {
+    font-size: 17px;
+  }
+  @media (min-width: 1150px) {
+    font-size: 18px;
+  }
+}
+html,
+body {
+  min-height: 100vh;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+ol,
+ul,
+p {
+  margin: 0;
+  padding: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.site__wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1600px;
+}
+.gatsby-image-wrapper div {
+  padding: 0;
+}
+.ReactModal__Content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #fff;
+  @media (min-width: 850px) {
+    display: none;
+  }
+}
+.mdxContent p {
+  margin-bottom: 1.25rem;
+}
+.mdxContent p:last-child {
+  margin-bottom: 0;
+}
