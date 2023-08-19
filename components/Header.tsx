@@ -1,19 +1,34 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { NavLink, Text, Link, Section } from "components";
+import { Link } from "@chakra-ui/next-js";
 import { links } from "utils/links";
 
 import logo from "public/images/logo.svg";
 import FBIcon from "public/icons/fb-icon.svg";
 import IGIcon from "public/icons/ig-icon.svg";
+import Section from "./Section";
 
 const Menu = () => (
   <>
     {links.map(({ label, url }, i) => (
-      <NavLink key={i} to={url} className="px-2 text-lg">
+      <Link
+        color="brand.gray"
+        key={i}
+        href={url}
+        px={[2, 2, 3, 4]}
+        fontSize={[5, 5, 5, 4]}
+        transition="color .25s"
+        sx={{
+          _hover: {
+            color: "brand.darkGray",
+            textDecoration: "none",
+          },
+        }}
+      >
         {label}
-      </NavLink>
+      </Link>
     ))}
   </>
 );
@@ -22,41 +37,54 @@ const Header = ({ modal: { modalIsActive, setModalIsActive } }: any) => {
   const icon = modalIsActive ? "times" : "bars";
   return (
     <>
-      <div className="flex bg-yellow py-2 justify-center">
+      <Flex bg="brand.yellow" py={2} justifyContent="center">
         <a
           href="http://www.adopt-an-alp.com/"
           style={{ textDecoration: "none", color: "black" }}
         >
           COVID-19: Read Here
         </a>
-      </div>
-      <Section className="flex justify-between items-start lg:items-center">
-        <div className="order-2" />
-        <div className="order-2 lg:order-1">
-          <Link to="/">
-            <div style={{ width: "10.5rem" }}>
+      </Flex>
+      <Section
+        as={Flex}
+        mt={3}
+        mb={7}
+        justifyContent="space-between"
+        alignItems={["flex-start", "flex-start", "center"]}
+      >
+        <Box order={2} />
+        <Box order={[2, 2, 1]}>
+          <Link href="/">
+            <Box width="10.5rem">
               <Image src={logo} alt="Quality Cheese" />
-            </div>
+            </Box>
           </Link>
-        </div>
-        <div className="order-3 relative">
-          <div
-            className="p-3 block lg:hidden absolute right-0 z-100 cursor-pointer"
-            onClick={() => setModalIsActive((prevState: boolean) => !prevState)}
+        </Box>
+        <Box order={3} style={{ position: "relative" }}>
+          <Box
+            p={3}
+            onClick={() => setModalIsActive((prevState: any) => !prevState)}
+            display={["block", "block", "none"]}
+            style={{
+              position: "absolute",
+              right: "0",
+              zIndex: "100",
+              cursor: "pointer",
+            }}
           >
-            <Text className="text-2xl text-darkGray">
+            <Text fontSize="2" color="darkGray">
               <FontAwesomeIcon icon={icon} />
             </Text>
-          </div>
-          <div className="hidden lg:block">
-            <div className="flex">
+          </Box>
+          <Box display={["none", "none", "block"]}>
+            <Flex>
               <Menu />
-              <div className="flex ml-2">
+              <Flex ml={2}>
                 <a
                   target="_blank"
                   href="https://www.facebook.com/qualitycheese"
                 >
-                  <img
+                  <Image
                     src={FBIcon}
                     alt="Follow us on Facebook"
                     title="Follow us on Facebook"
@@ -68,7 +96,7 @@ const Header = ({ modal: { modalIsActive, setModalIsActive } }: any) => {
                   />
                 </a>
                 <a target="_blank" href="https://www.instagram.com/adoptanalp/">
-                  <img
+                  <Image
                     src={IGIcon}
                     alt="Follow us on Instagram"
                     title="Follow us on Instagram"
@@ -79,10 +107,10 @@ const Header = ({ modal: { modalIsActive, setModalIsActive } }: any) => {
                     }}
                   />
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Flex>
+            </Flex>
+          </Box>
+        </Box>
       </Section>
     </>
   );

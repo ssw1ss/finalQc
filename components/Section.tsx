@@ -1,7 +1,8 @@
 import React from "react";
+import { Box } from "@chakra-ui/react";
 
-const Section = ({ className = "", ...props }: any) => (
-  <div className={"text-blue max-w-full px-4 px-5" + className} {...props} />
+const Section = (props: any) => (
+  <Box width="100%" px={["5%", "7%", "10%", "12%"]} {...props} />
 );
 
 export default Section;

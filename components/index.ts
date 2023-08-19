@@ -1,29 +1,27 @@
-import Button from "./Button";
+import Card from "./Card";
 import Footer from "./Footer";
-// import Header from "./Header"
-import { H1, H2, H3, H4, H5, H6 } from "./Headings";
+import Header from "./Header";
+import { H1, H2, H3, H4, H5, H6 } from "./Heading";
 import Icon from "./Icon";
 import Layout from "./Layout";
-import Link from "./Link";
-// import MobileMenu from "./MobileMenu"
-import NavLink from "./NavLink";
+import MobileMenu from "./MobileMenu";
 import Paragraph from "./Paragraph";
 import Section from "./Section";
 import Text from "./Text";
 
 export {
-  Button,
+  Card,
+  Header,
   Footer,
+  Icon,
   H1,
   H2,
   H3,
   H4,
   H5,
   H6,
-  Icon,
   Layout,
-  Link,
-  NavLink,
+  MobileMenu,
   Paragraph,
   Section,
   Text,
