@@ -86,6 +86,13 @@ img {
 .mdxContent p:last-child {
   margin-bottom: 0;
 }
+.mdxContent a {
+  color: blue;
+}
+.mdxContent a:hover {
+  color: blue;
+  text-decoration: underline;
+}
 .yellowBG {
   position: relative;
 }

@@ -7,10 +7,12 @@ import Image from "next/image";
 const ProductCard = ({ info, ...props }: any) => {
   const {
     data: { title, milk_type, image },
+    filePath,
   } = info;
+  const url = filePath.slice(0, filePath.length - 4);
   return (
     <Flex {...props}>
-      <Card as={Link} href="/" variant="product" width="100%">
+      <Card as={Link} href={`/products/${url}`} variant="product" width="100%">
         <Flex
           alignItems="center"
           justifyContent="center"

@@ -215,16 +215,3 @@ export const getServerSideProps = async () => {
 
   return { props: { products } };
 };
-
-// export const datQuery = graphql`
-//   query datQuery {
-//     allMdx(
-//       sort: { fields: frontmatter___title }
-//       filter: { frontmatter: { type: { eq: "product" } } }
-//     ) {
-//       nodes {
-//         ...ProductPreview
-//       }
-//     }
-//   }
-// `
