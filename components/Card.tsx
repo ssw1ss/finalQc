@@ -24,7 +24,6 @@ const cardStyles = {
 };
 
 function Card({ type = "default", ...rest }: CardProps) {
-  console.log(cardStyles[type]);
   return <Box style={cardStyles[type]} {...rest} />;
 }
 
