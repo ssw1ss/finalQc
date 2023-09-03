@@ -17,13 +17,13 @@ const queryParamsToObject = (params: any) => {
 };
 
 // Make sure to validate filters
-// const validFilters = {
-//   texture: "texture",
-//   type: "milk_type",
-//   treatment: "milk_treatment",
-//   origin: "origin",
-//   selection: "selection"
-// }
+const validFilters = {
+  texture: "texture",
+  type: "milk_type",
+  treatment: "milk_treatment",
+  origin: "origin",
+  selection: "selection",
+};
 const validateFilters = (filters: any) => {
   return filters;
 };
@@ -43,9 +43,9 @@ const validatePage = (page: any, maxPage: any) => {
 
 const isObject = (obj: any) => obj === Object(obj);
 
-const validateQueryParams = (params: any) => {
+const validateQueryParams = () => {
   const router = useRouter();
-  const queryParamsObject = params === "" ? {} : queryParamsToObject(params);
+  const queryParamsObject = router.query;
   let filters = null;
   let page = null;
   if ("filters" in queryParamsObject) {

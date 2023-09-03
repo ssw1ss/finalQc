@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import cloneDeep from "lodash.clonedeep";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { H6, Text } from "components";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Card, Flex } from "@chakra-ui/react";
+import { useClickAway } from "react-use";
 
 const FilterButton = (props: any) => (
   <Box
@@ -19,147 +20,177 @@ const FilterButton = (props: any) => (
 const FilterProductsButton = (props: any) => (
   <FilterButton {...props} bg="brand.blue" color="#fff" />
 );
+const FiltersToggle = ({ children, ...props }: any) => (
+  <Box
+    fontSize={5}
+    background="#eee"
+    borderRadius="3px"
+    padding="0.3rem 1.5rem"
+    cursor="pointer"
+    {...props}
+  >
+    {children}
+  </Box>
+);
 
-const defaultFilters = [
+const filtersArray = [
   {
     name: "milk_type",
-    options: ["Buffalo", "Cow", "Goat", "Sheep"],
-    checked: null,
+    options: {
+      Buffalo: false,
+      Cow: false,
+      Goat: false,
+      Sheep: false,
+    },
     label: "Milk Type",
-    id: "p1",
   },
   {
     name: "milk_treatment",
-    options: ["Raw", "Pasteurized", "Thermized"],
-    checked: null,
+    options: { Raw: false, Pasteurized: false, Thermized: false },
     label: "Treatment",
-    id: "p2",
   },
   {
     name: "texture",
-    options: ["Soft", "Semihard", "Hard"],
-    checked: null,
+    options: { Soft: false, Semihard: false, Hard: false },
     label: "Texture",
-    id: "p3",
   },
   {
     name: "origin",
-    options: [
-      "Alpage",
-      "Certified Mountain Cheese",
-      "Certified Mountain Milk",
-      "Certified Mountain Meadow Milk",
-      "Available Certified Organic",
-    ],
-    checked: null,
+    options: {
+      Alpage: false,
+      "Certified Mountain Cheese": false,
+      "Certified Mountain Milk": false,
+      "Certified Mountain Meadow Milk": false,
+      "Available Certified Organic": false,
+    },
     label: "Origin",
-    id: "p4",
   },
   {
     name: "selection",
-    options: ["Hostettler", "Beeler"],
-    checked: null,
+    options: { Hostettler: false, Beeler: false },
     label: "Selection",
-    id: "p5",
   },
 ];
 
-const getUIFromParams = (filters: any) => {
-  const defaults = cloneDeep(defaultFilters);
-  if (filters) {
-    return defaults.map((filter) => {
-      const name = filter.name;
-      if (filters.hasOwnProperty(name)) {
-        filter.checked = filters[name];
+const Filters = ({ hideFilters, ...props }: any) => {
+  const [visible, setVisible] = useState(false);
+  const router = useRouter();
+  const { query } = router;
+  const currentPage = query.page;
+  const [filters, setFilters] = useState(() => {
+    const test = filtersArray.map((filter) => {
+      const isActiveFilter = query[filter.name];
+      if (isActiveFilter) {
+        const activeFilterValues =
+          typeof isActiveFilter === "string"
+            ? [isActiveFilter]
+            : isActiveFilter;
+        Object.keys(filter.options).forEach(
+          (optionName) =>
+            // @ts-ignore
+            (filter.options[optionName] =
+              activeFilterValues.includes(optionName))
+        );
       }
       return filter;
     });
-  } else {
-    return defaults;
-  }
-};
-
-const useRadios = (initialState: any) => {
-  const router = useRouter();
-  const [values, setValues] = useState(initialState);
-  const setRadios = (e: any) => {
-    const filterName = e.target.name;
-    const newValues = values.map((value: any) => {
-      if (value.name === filterName) {
-        value.checked = e.target.value;
-      }
-      return value;
-    });
-    setValues(newValues);
-  };
-  const filterValues = () => {
-    const checkedFilters = values.reduce((a: any, c: any) => {
-      if (c.checked !== null) {
-        return { ...a, [c.name]: c.checked };
-      }
-      return a;
-    }, {});
-    if (
-      Object.entries(checkedFilters).length !== 0 &&
-      checkedFilters.constructor === Object
-    ) {
-      router.push(`/products?filters=${JSON.stringify(checkedFilters)}`);
+    console.log("TEST: ", test);
+    return test;
+  });
+  const filterRef = useRef(null);
+  useClickAway(filterRef, (e: any) => {
+    if (e.target.getAttribute("name") == "filter-toggle") {
+      e.stopPropagation();
+    } else {
+      setVisible(false);
     }
+  });
+  const toggleFilterOption = (name: string, optionName: string) => {
+    const newFilters = cloneDeep(filters);
+    const index = newFilters.findIndex((filter) => filter.name === name);
+    console.log("IDK: ", newFilters[index]);
+    // @ts-ignore
+    newFilters[index].options[optionName] =
+      // @ts-ignore
+      !newFilters[index].options[optionName];
+    setFilters(newFilters);
   };
-  const resetValues = async () => {
-    console.log(defaultFilters);
-    await router.push("/products/");
-    setValues(defaultFilters);
-  };
-  return [values, setRadios, filterValues, resetValues];
-};
-
-const Filters = ({ filters, hideFilters, ...props }: any) => {
-  const [radios, setRadios, filter, reset] = useRadios(() =>
-    getUIFromParams(filters)
-  );
   const handleFilter = () => {
-    filter();
-    hideFilters();
+    const newQuery = filters.reduce((acc, filter) => {
+      const activeOptions = Object.entries(filter.options)
+        .filter(([_, val]) => val)
+        .map(([key, _]) => key);
+      if (activeOptions.length > 0) {
+        acc[filter.name] = activeOptions;
+      }
+      return acc;
+    }, {} as any);
+    router.push({
+      pathname: "/products",
+      query: newQuery,
+    });
+    setVisible(false);
   };
   const handleReset = () => {
-    reset();
-    hideFilters();
+    setFilters(filtersArray);
+    router.push({
+      pathname: "/products",
+      query: {},
+    });
+    setVisible(false);
   };
   return (
-    <>
-      <Flex justifyContent="space-between">
-        <FilterProductsButton onClick={handleFilter}>
-          Filter Products
-        </FilterProductsButton>
-        <FilterButton onClick={handleReset}>
-          Reset Filters <FontAwesomeIcon icon="sync-alt" />
-        </FilterButton>
-      </Flex>
-      <form {...props}>
-        {radios.map(({ name, options, checked, label, id }: any) => {
-          return (
-            <Flex flexDirection="column" key={id} mb={4}>
-              <H6 mb={1}>{label}</H6>
-              {options.map((option: any) => (
-                <label key={option}>
-                  <Flex>
-                    <input
-                      type="radio"
-                      name={name}
-                      value={option}
-                      checked={checked === option}
-                      onChange={setRadios}
-                    />
-                    <Text fontSize={6}>{option}</Text>
-                  </Flex>
-                </label>
-              ))}
-            </Flex>
-          );
-        })}
-      </form>
-    </>
+    <Box mb={5} style={{ position: "relative" }}>
+      <FiltersToggle name="filter-toggle" onClick={() => setVisible(!visible)}>
+        Filters <FontAwesomeIcon size="xs" icon="sort-amount-down" />
+      </FiltersToggle>
+      {visible && (
+        <Card
+          ref={filterRef}
+          variant="default"
+          style={{
+            minWidth: "18rem",
+            zIndex: "100",
+            position: "absolute",
+            right: "0",
+            top: "100%",
+          }}
+          p={4}
+        >
+          <Flex justifyContent="space-between">
+            <FilterProductsButton onClick={handleFilter}>
+              Filter Products
+            </FilterProductsButton>
+            <FilterButton onClick={handleReset}>
+              Reset Filters <FontAwesomeIcon icon="sync-alt" />
+            </FilterButton>
+          </Flex>
+          <form {...props}>
+            {filters.map(({ name, options, label }: any) => {
+              return (
+                <Flex flexDirection="column" key={name} mb={4}>
+                  <H6 mb={1}>{label}</H6>
+                  {Object.keys(options).map((optionName: any) => (
+                    <label key={optionName}>
+                      <Flex>
+                        <input
+                          type="checkbox"
+                          name={name}
+                          value={optionName}
+                          onChange={() => toggleFilterOption(name, optionName)}
+                          checked={options[optionName]}
+                        />
+                        <Text fontSize={6}>{optionName}</Text>
+                      </Flex>
+                    </label>
+                  ))}
+                </Flex>
+              );
+            })}
+          </form>
+        </Card>
+      )}
+    </Box>
   );
 };
 
