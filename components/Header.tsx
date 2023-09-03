@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Menu, MenuButton, MenuList, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { Link } from "@chakra-ui/next-js";
 import { links } from "utils/links";
@@ -10,12 +10,12 @@ import FBIcon from "public/icons/fb-icon.svg";
 import IGIcon from "public/icons/ig-icon.svg";
 import Section from "./Section";
 
-const Menu = () => (
+const MenuLinks = () => (
   <>
-    {links.map(({ label, url }, i) => (
+    {links.map(({ label, url }) => (
       <Link
         color="brand.gray"
-        key={i}
+        key={label}
         href={url}
         px={[2, 2, 3, 4]}
         fontSize={[5, 5, 5, 4]}
@@ -32,9 +32,31 @@ const Menu = () => (
     ))}
   </>
 );
+const MobileMenuLinks = () => (
+  <>
+    {links.map(({ label, url }) => (
+      <Box py={2} key={label}>
+        <Link
+          color="brand.gray"
+          href={url}
+          px={[2, 2, 3, 4]}
+          fontSize={[5, 5, 5, 4]}
+          transition="color .25s"
+          sx={{
+            _hover: {
+              color: "brand.darkGray",
+              textDecoration: "none",
+            },
+          }}
+        >
+          {label}
+        </Link>
+      </Box>
+    ))}
+  </>
+);
 
-const Header = ({ modal: { modalIsActive, setModalIsActive } }: any) => {
-  const icon = modalIsActive ? "times" : "bars";
+const Header = () => {
   return (
     <>
       <Flex bg="brand.yellow" py={2} justifyContent="center">
@@ -61,24 +83,27 @@ const Header = ({ modal: { modalIsActive, setModalIsActive } }: any) => {
           </Link>
         </Box>
         <Box order={3} style={{ position: "relative" }}>
-          <Box
-            p={3}
-            onClick={() => setModalIsActive((prevState: any) => !prevState)}
-            display={["block", "block", "none"]}
-            style={{
-              position: "absolute",
-              right: "0",
-              zIndex: "100",
-              cursor: "pointer",
-            }}
-          >
-            <Text fontSize="2" color="darkGray">
-              <FontAwesomeIcon icon={icon} />
-            </Text>
+          <Box display={["block", "block", "none"]}>
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton>
+                    <Text fontSize="2" color="darkGray">
+                      <FontAwesomeIcon icon={isOpen ? "times" : "bars"} />
+                    </Text>
+                  </MenuButton>
+                  <MenuList display="flex" flexDirection="column">
+                    <Box py={2} px={4}>
+                      <MobileMenuLinks />
+                    </Box>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
           </Box>
           <Box display={["none", "none", "block"]}>
             <Flex>
-              <Menu />
+              <MenuLinks />
               <Flex ml={2}>
                 <a
                   target="_blank"

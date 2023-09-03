@@ -3,5 +3,5 @@ export const links = [
   { label: "About", url: "/about" },
   { label: "Products", url: "/products" },
   { label: "Health", url: "/health" },
-  { label: "Contact", url: "/contact" },
+  { label: "Contact", url: "mailto: qualitycheese@comcast.net" },
 ];

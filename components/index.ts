@@ -1,3 +1,4 @@
+import Button from "./Button";
 import Card from "./Card";
 import Filters from "./Filters";
 import Footer from "./Footer";
@@ -12,6 +13,7 @@ import Section from "./Section";
 import Text from "./Text";
 
 export {
+  Button,
   Card,
   Header,
   Filters,

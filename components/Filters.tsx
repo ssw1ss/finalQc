@@ -3,8 +3,8 @@ import cloneDeep from "lodash.clonedeep";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { H6, Text } from "components";
-import { Box, Card, Flex } from "@chakra-ui/react";
+import { Card, H6, Text } from "components";
+import { Box, Flex } from "@chakra-ui/react";
 import { useClickAway } from "react-use";
 
 const FilterButton = (props: any) => (
@@ -145,50 +145,53 @@ const Filters = ({ hideFilters, ...props }: any) => {
         Filters <FontAwesomeIcon size="xs" icon="sort-amount-down" />
       </FiltersToggle>
       {visible && (
-        <Card
-          ref={filterRef}
-          variant="default"
-          style={{
-            minWidth: "18rem",
-            zIndex: "100",
-            position: "absolute",
-            right: "0",
-            top: "100%",
-          }}
-          p={4}
-        >
-          <Flex justifyContent="space-between">
-            <FilterProductsButton onClick={handleFilter}>
-              Filter Products
-            </FilterProductsButton>
-            <FilterButton onClick={handleReset}>
-              Reset Filters <FontAwesomeIcon icon="sync-alt" />
-            </FilterButton>
-          </Flex>
-          <form {...props}>
-            {filters.map(({ name, options, label }: any) => {
-              return (
-                <Flex flexDirection="column" key={name} mb={4}>
-                  <H6 mb={1}>{label}</H6>
-                  {Object.keys(options).map((optionName: any) => (
-                    <label key={optionName}>
-                      <Flex>
-                        <input
-                          type="checkbox"
-                          name={name}
-                          value={optionName}
-                          onChange={() => toggleFilterOption(name, optionName)}
-                          checked={options[optionName]}
-                        />
-                        <Text fontSize={6}>{optionName}</Text>
-                      </Flex>
-                    </label>
-                  ))}
-                </Flex>
-              );
-            })}
-          </form>
-        </Card>
+        <Box ref={filterRef}>
+          <Card
+            variant="default"
+            style={{
+              minWidth: "18rem",
+              zIndex: "100",
+              position: "absolute",
+              right: "0",
+              top: "100%",
+            }}
+            p={4}
+          >
+            <Flex justifyContent="space-between">
+              <FilterProductsButton onClick={handleFilter}>
+                Filter Products
+              </FilterProductsButton>
+              <FilterButton onClick={handleReset}>
+                Reset Filters <FontAwesomeIcon icon="sync-alt" />
+              </FilterButton>
+            </Flex>
+            <form {...props}>
+              {filters.map(({ name, options, label }: any) => {
+                return (
+                  <Flex flexDirection="column" key={name} mb={4}>
+                    <H6 mb={1}>{label}</H6>
+                    {Object.keys(options).map((optionName: any) => (
+                      <label key={optionName}>
+                        <Flex gap={1}>
+                          <input
+                            type="checkbox"
+                            name={name}
+                            value={optionName}
+                            onChange={() =>
+                              toggleFilterOption(name, optionName)
+                            }
+                            checked={options[optionName]}
+                          />
+                          <Text fontSize={6}>{optionName}</Text>
+                        </Flex>
+                      </label>
+                    ))}
+                  </Flex>
+                );
+              })}
+            </form>
+          </Card>
+        </Box>
       )}
     </Box>
   );

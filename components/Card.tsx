@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 
 type CardProps = {
-  type?: "default" | "flat" | "product";
+  variant?: "default" | "flat" | "product";
   [key: string]: any;
 };
 
@@ -23,8 +23,8 @@ const cardStyles = {
   },
 };
 
-function Card({ type = "default", ...rest }: CardProps) {
-  return <Box style={cardStyles[type]} {...rest} />;
+function Card({ variant = "default", style = {}, ...rest }: CardProps) {
+  return <Box style={{ ...style, ...cardStyles[variant] }} {...rest} />;
 }
 
 export default Card;

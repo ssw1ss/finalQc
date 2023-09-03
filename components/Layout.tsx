@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-
-import Modal from "react-modal";
-import { Header, Footer, MobileMenu } from "components";
+import React from "react";
+import { Header, Footer } from "components";
 import Head from "next/head";
 
 const Layout = ({ children }: { children: any }) => {
-  const [modalIsActive, setModalIsActive] = useState(false);
   return (
     <>
       <Head>
@@ -22,15 +19,7 @@ const Layout = ({ children }: { children: any }) => {
         />
       </Head>
       <div className="site__wrapper">
-        <Modal
-          className="ReactModal__Content"
-          overlayClassName="ReactModal__Overlay"
-          isOpen={modalIsActive}
-          onRequestClose={() => setModalIsActive((prevState) => !prevState)}
-        >
-          <MobileMenu />
-        </Modal>
-        <Header modal={{ modalIsActive, setModalIsActive }} />
+        <Header />
         <div>{children}</div>
         <Footer />
       </div>

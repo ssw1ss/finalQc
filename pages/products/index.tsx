@@ -32,6 +32,7 @@ const PaginationItem = ({ children, isActive, page, ...props }: any) => {
       borderRadius="3px"
       border="1px solid"
       borderColor={isActive ? "brand.blue" : "#ddd"}
+      cursor="pointer"
       color={isActive ? "#fff" : "#575757"}
       bg={isActive ? "brand.blue" : "#fff"}
       fontSize="1.25rem"
