@@ -7,7 +7,7 @@ import {
   faSyncAlt,
   faSortAmountDown,
 } from "@fortawesome/free-solid-svg-icons";
-// import "../styles/globals.css";
+import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
 
