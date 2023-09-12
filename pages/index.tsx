@@ -164,19 +164,20 @@ const IndexPage = () => (
             thus legal for the American market version of classic Vacherin
             Mont-d'Or is produced for Quality Cheese Inc. and their Swiss
             partner InterCheese exclusively and imported by Forever Cheese only.
-            So make sure to get your hands on a Petit Vaccarinus bearing this
-            label only.
+            So make sure to get your hands on a Petit Vaccarinus bearing the
+            label shown in the picture only.
           </Paragraph>
           <Paragraph>
             “Hauser Authentique” started production on August 18, hence the
             first batches of this truly unique and wonderful cheese will be
             available in the US towards the end of October 2023. The official
-            release festival of this year's Vacherin Mont-d'Or in Switzerland is
-            September 23. The product undergoes rigorous weekly quality and
-            safety controls implemented by the AOP which celebrates its 20th
-            anniversary this year. Like Vacherin Mont d'Or, Petit Vaccarinus is
-            a seasonal product and only available between September and March.
-            For more info go to{" "}
+            release date of this year's Vacherin Mont-d'Or is September 15, and
+            there will be a festival held on September 23 to celebrate its 20th
+            anniversary of AOP status. The product undergoes rigorous weekly
+            quality and safety controls implemented by the AOP which celebrates
+            its 20th anniversary this year. Like Vacherin Mont d'Or, Petit
+            Vaccarinus is a seasonal product and only available between
+            September and March. For more information go to{" "}
             <a
               href="https://www.vacherin-montdor.ch/en/"
               style={{ color: "blue" }}
