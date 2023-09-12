@@ -5,11 +5,12 @@ import Image from "next/image";
 
 import bigCheese from "public/images/Chardonnay-Truffle-Bio.png";
 import foreverCheese from "public/images/forever-cheese.png";
+import petitVaccarinus from "public/images/petit-vaccarinus.png";
 import iconCheese from "public/images/icon-cheese.svg";
 import iconAlp from "public/images/icon-alp.svg";
 import Button from "components/Button";
 import Section from "components/Section";
-import { H1, H5 } from "components/Heading";
+import { H1, H3, H5 } from "components/Heading";
 
 const cardIcon = {
   position: "absolute",
@@ -152,6 +153,45 @@ const IndexPage = () => (
             </Button>
           </Box>
         </Card>
+      </Flex>
+    </Section>
+    <Section my={9}>
+      <Flex flexDirection={["column", "column", "column", "column", "row"]}>
+        <Box width={["100%", "100%", "100%", "100%", "60%"]}>
+          <H3 pb={3}>It's that time of the year again!</H3>
+          <Paragraph>
+            Petit Vaccarinus is coming back to the US. This 60 days aged and
+            thus legal for the American market version of classic Vacherin
+            Mont-d'Or is produced for Quality Cheese Inc. and their Swiss
+            partner InterCheese exclusively and imported by Forever Cheese only.
+            So make sure to get your hands on a Petit Vaccarinus bearing this
+            label only.
+          </Paragraph>
+          <Paragraph>
+            “Hauser Authentique” started production on August 18, hence the
+            first batches of this truly unique and wonderful cheese will be
+            available in the US towards the end of October 2023. The official
+            release festival of this year's Vacherin Mont-d'Or in Switzerland is
+            September 23. The product undergoes rigorous weekly quality and
+            safety controls implemented by the AOP which celebrates its 20th
+            anniversary this year. Like Vacherin Mont d'Or, Petit Vaccarinus is
+            a seasonal product and only available between September and March.
+            For more info go to{" "}
+            <a
+              href="https://www.vacherin-montdor.ch/en/"
+              style={{ color: "blue" }}
+            >
+              https://www.vacherin-montdor.ch/en/
+            </a>
+          </Paragraph>
+        </Box>
+        <Box width={["100%", "100%", "100%", "100%", "40%"]} px={[0, 0, 5]}>
+          <Image
+            alt="Petit Vaccarinus label"
+            src={petitVaccarinus}
+            style={{ width: "100%" }}
+          />
+        </Box>
       </Flex>
     </Section>
   </Layout>
