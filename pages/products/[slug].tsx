@@ -120,8 +120,8 @@ const SinglePost = ({ source, frontMatter }: any) => {
           </Box>
           <Box width={["100%", "100%", "45%"]}>
             <Box>
-              <a href="https://www.wbcheese.com/">
-                <H4 my={2}>World's Best Cheese</H4>
+              <a href="https://www.forevercheese.com/">
+                <H4 my={2}>Forever Cheese</H4>
               </a>
               <Flex
                 mt={3}
@@ -129,56 +129,21 @@ const SinglePost = ({ source, frontMatter }: any) => {
                 justifyContent="space-between"
               >
                 <Box width={["100%", "45%"]}>
-                  <H6 mb={3}>East Coast Location</H6>
+                  <H6 mb={3}>Address</H6>
                   <Flex fontSize={6} mb={3}>
                     <Box mr={2} color="brand.blue">
                       <FontAwesomeIcon icon="map-marker-alt" />
                     </Box>
-                    <Text>111 Business Park Drive Armonk, NY 10504</Text>
+                    <Text>12 W 27th St, Floor 14 New York, NY 10001</Text>
                   </Flex>
                   <Flex fontSize={6}>
                     <Box mr={2} color="brand.blue">
                       <FontAwesomeIcon icon="phone" />
                     </Box>
-                    <Text>1-800-843-2378</Text>
-                  </Flex>
-                </Box>
-                <Box width={["100%", "45%"]} mt={[5, 0]}>
-                  <H6 mb={2}>West Coast Location</H6>
-                  <Flex fontSize={6} mb={3}>
-                    <Box mr={2} color="brand.blue">
-                      <FontAwesomeIcon icon="map-marker-alt" />
-                    </Box>
-                    <Text>2200 North Loop Road Alameda, CA 94502</Text>
-                  </Flex>
-                  <Flex fontSize={6}>
-                    <Box mr={2} color="brand.blue">
-                      <FontAwesomeIcon icon="phone" />
-                    </Box>
-                    <Text>1-800-477-5262</Text>
+                    <Text>1-718-777-0772</Text>
                   </Flex>
                 </Box>
               </Flex>
-            </Box>
-            <Box mt={6}>
-              <a href="https://aniata.com/">
-                <H4 my={2}>The Aniata Cheese Company</H4>
-              </a>
-
-              <Box>
-                <Flex fontSize={6} mb={3}>
-                  <Box mr={2} color="brand.blue">
-                    <FontAwesomeIcon icon="map-marker-alt" />
-                  </Box>
-                  <Text>2332 La Mirada Drive, Suite 1000 Vista, CA 92081</Text>
-                </Flex>
-                <Flex fontSize={6}>
-                  <Box mr={2} color="brand.blue">
-                    <FontAwesomeIcon icon="phone" />
-                  </Box>
-                  <Text>1-760-599-0151</Text>
-                </Flex>
-              </Box>
             </Box>
           </Box>
         </Flex>
